@@ -1,0 +1,33 @@
+﻿<Window x:Class="DataCheck_XP.WorkWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:control="clr-namespace:DataCheck_XP.Control"
+                      ResizeMode="CanMinimize"
+                      WindowStartupLocation="CenterScreen"
+                      Height="680" Width="810"
+                      Title="2014年教育事业统计核查工具V3.1(XP版)">
+    <Grid>
+        <Grid  Opacity="0.1" Background="Black" Panel.ZIndex="998" x:Name="coverGrid"  Visibility="Collapsed">
+            <TextBlock Text="生成报告中" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Grid>
+        <TabControl x:Name="tab">
+            <TabItem Header="选择模板">
+                <control:TemplateControl x:Name="templateControl"/>
+            </TabItem>
+            <TabItem Header="生成报告">
+                <control:RegionControl x:Name="regionControl"/>
+            </TabItem>
+            <TabItem Header="查看报告">
+                <control:WordControl x:Name="wordControl"/>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,37 @@
+﻿<Application x:Class="DataCheck_XP.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ArgListTemplate">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                    <TextBlock Margin="5" Text="{Binding Path=argNo}" Foreground="{DynamicResource AccentColorBrush}"  VerticalAlignment="Center" />
+                    <TextBlock Margin="5" Text="{Binding Path=argName}" Foreground="Black"  VerticalAlignment="Center" ToolTip="{Binding Path=argDataSql}"   />
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="RegionListTemplate">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                    <Rectangle Width="20" Height="20" Margin="5,0,5,0" Loaded="rectLoaded" Tag ="{Binding nodeOrganizationType}">
+                    </Rectangle>
+                    <TextBlock Margin="5" Text="{Binding Path=nodeName}" Foreground="Black"  VerticalAlignment="Center" ToolTip="{Binding Path=argDataSql}"   />
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="WordListTemplate">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5" >
+                        <TextBlock VerticalAlignment="Center" FontSize="12" Text="{Binding CreationTime}" Margin="5,0,0,0" />
+                        <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" Text="{Binding Name}" ToolTip="{Binding FullName}"  Margin="5,0,0,0" />
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="TemplateListTemplate">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5" >
+                        <TextBlock Margin="5" Text="{Binding Path=templateName}" Foreground="Black"  VerticalAlignment="Center" ToolTip="{Binding Path=templateName}"   />
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

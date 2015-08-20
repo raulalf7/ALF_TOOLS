@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DBFConverter", "ALF.DBFConverter\ALF.DBFConverter.csproj", "{B9CA2A65-6AEE-4D8B-9F4F-5CF2E6B59F67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataCheck", "ALF.EduDataCheck\ALF.DataCheck.csproj", "{DB635A2D-A0C2-40D5-9A08-46FB735181EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataCheck_XP", "ALF.EduDataCheck_XP\ALF.DataCheck_XP.csproj", "{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B9CA2A65-6AEE-4D8B-9F4F-5CF2E6B59F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9CA2A65-6AEE-4D8B-9F4F-5CF2E6B59F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9CA2A65-6AEE-4D8B-9F4F-5CF2E6B59F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB635A2D-A0C2-40D5-9A08-46FB735181EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB635A2D-A0C2-40D5-9A08-46FB735181EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB635A2D-A0C2-40D5-9A08-46FB735181EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB635A2D-A0C2-40D5-9A08-46FB735181EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
