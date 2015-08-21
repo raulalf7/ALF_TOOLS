@@ -1,7 +1,7 @@
 ﻿<Window x:Class="DataCheck_XP.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:library="clr-namespace:Alf7.UI.Library;assembly=Alf7.UI.Library"
+        xmlns:titleControl="clr-namespace:ALF.UI.TitleControl;assembly=ALF.UI"
         Loaded="Window_Loaded"
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
@@ -19,8 +19,8 @@
             <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <library:TitleCombo x:Name="serverNameCombo" Grid.Row="1" Grid.Column="1" Title="服务器" TitleSize="16" DisplayMemberPath="connName" ValueWidth="290" SelectionChanged="ServerNameCombo_OnSelectionChanged" />
-        <library:TitleCombo x:Name="typeCombo" Grid.Row="2" Grid.Column="1" Title="模式" TitleSize="16"  ValueWidth="290" IsEnable="False" />
+        <titleControl:Combo x:Name="serverNameCombo" Grid.Row="1" Grid.Column="1" Title="服务器" TitleSize="16" DisplayMemberPath="connName" ValueWidth="290" SelectionChanged="ServerNameCombo_OnSelectionChanged" />
+        <titleControl:Combo x:Name="typeCombo" Grid.Row="2" Grid.Column="1" Title="模式" TitleSize="16"  ValueWidth="290" IsEnable="False" />
         <Grid Grid.Row="3" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

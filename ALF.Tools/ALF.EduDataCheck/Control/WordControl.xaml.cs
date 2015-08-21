@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using DataCheck_XP;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace DataCheck.Control
@@ -45,7 +46,7 @@ namespace DataCheck.Control
                         }
                         catch (Exception e)
                         {
-                            Tools.showError(999,e.Message);
+                            Tools.ShowError(999,e.Message);
                         }
                         Load(false);
                     };

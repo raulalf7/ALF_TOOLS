@@ -2,7 +2,6 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Alf7.Tools.Library;
 
 
 namespace DataCheck_XP.Control
@@ -20,7 +19,7 @@ namespace DataCheck_XP.Control
         private FileInfo _selectedFile;
 
 
-        public void load(bool isInitialAction)
+        public void Load(bool isInitialAction)
         {
             var dir = new DirectoryInfo(@".\reportFiles");
             Action initial = () =>
@@ -53,9 +52,9 @@ namespace DataCheck_XP.Control
             }
             catch (Exception ex)
             {
-                SystemTools.showError(999, ex.Message);
+                Tools.ShowError(999, ex.Message);
             }
-            load(false);
+            Load(false);
         }
         private void DocListbox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -71,7 +70,7 @@ namespace DataCheck_XP.Control
             {
                 return;
             }
-            SystemTools.execCmd(_selectedFile.FullName, "");
+            ALF.SYSTEM.WindowsTools.ExecCmd(_selectedFile.FullName, "");
 
         }
     }

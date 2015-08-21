@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ALF.EDU.DataModel;
+using DataCheck_XP;
 
 namespace DataCheck.Info
 {
@@ -44,7 +45,7 @@ namespace DataCheck.Info
             var view = ALF.MSSQL.Tools.GetSqlDataView(sql, out result);
             if (result != "")
             {
-                Tools.showError(999,result);
+                Tools.ShowError(999,result);
                 return;
             }
             MessageBox.Show(view.Table.Rows[0][0].ToString());
@@ -67,7 +68,7 @@ namespace DataCheck.Info
                 MessageBox.Show(@"导出完成", @"导出完成");
                 return;
             }
-            Tools.showError(999, result);
+            Tools.ShowError(999, result);
         }
 
         private void confirmButton_Click(object sender, EventArgs e)

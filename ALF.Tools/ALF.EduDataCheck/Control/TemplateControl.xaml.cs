@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ALF.EDU;
 using ALF.EDU.DataModel;
 using ALF.SYSTEM;
+using DataCheck_XP;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace DataCheck.Control
@@ -137,7 +138,7 @@ namespace DataCheck.Control
                 }
                 else
                 {
-                    _tmpResult = Tools.updateArgConfig(argListTmpe);
+                    _tmpResult = Tools.UpdateArgConfig(argListTmpe);
                     if (_tmpResult == "")
                     {
                         _templateInfo.templatePath = string.Format(@".\templateFiles\{0}", _file.Name);

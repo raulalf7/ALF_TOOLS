@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using DataCheck_XP;
 
 namespace DataCheck
 {
@@ -37,19 +38,19 @@ namespace DataCheck
         {
             if (!ALF.SYSTEM.WindowsTools.IsServeiceStart(ALF.MSSQL.Tools.ServiceName))
             {
-                Tools.showError(101);
+                Tools.ShowError(101);
                 return;
             }
 
             if (!ALF.MSSQL.Tools.IsDBOpen())
             {
-                Tools.showError(102);
+                Tools.ShowError(102);
                 return;
             }
 
             if (!File.Exists(Tools.TemplateConfigPath) || !File.Exists(Tools.ArgConfigPath))
             {
-                Tools.showError(200);
+                Tools.ShowError(200);
                 return;
             }
 

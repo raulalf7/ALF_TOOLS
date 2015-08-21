@@ -5,10 +5,8 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-
-using Alf7.Tools.Library;
-using Alf7.Tools.Library.DataModel;
-using Alf7.UI.Library;
+using ALF.EDU.DataModel;
+using ALF.UI.EduUI;
 
 namespace DataCheck_XP.Control
 {
@@ -24,7 +22,7 @@ namespace DataCheck_XP.Control
 
         public Action CreateAction;
 
-        public void load(List<TemplateInfo> templateInfos)
+        public void Load(List<TemplateInfo> templateInfos)
         {
             if (templateInfos.Count == 0)
             {
@@ -35,7 +33,7 @@ namespace DataCheck_XP.Control
             fileNameTextBlock.Focus();
             var tmp = _templateInfoList.Aggregate("", (current, item) => current + (item.templateName + "，"));
             fileNameTextBlock.Text = tmp.Substring(0, tmp.Length - 1);
-            intialRegionTree();
+            IntialRegionTree();
             _regionList = new RegionList();
             selectedRegion.DataContext = _regionList;
 
@@ -44,10 +42,10 @@ namespace DataCheck_XP.Control
                 WorkWindow.Cover.Visibility = Visibility.Collapsed;
                 if (result != "")
                 {
-                    WorkWindow.showError(result);
+                    WorkWindow.ShowError(result);
                     return;
                 }
-                WorkWindow.showInfo("生成完成","报告生成完成");
+                WorkWindow.ShowInfo("生成完成","报告生成完成");
                 if (CreateAction != null)
                 {
                     CreateAction();
@@ -60,10 +58,9 @@ namespace DataCheck_XP.Control
         private List<TemplateInfo> _templateInfoList;
         RegionList _regionList;
 
-        private void intialRegionTree()
+        private void IntialRegionTree()
         {
-            _regionTreeControl = new RegionTreeControl(SqlTools.sqlConnString) { appType = 1, analysisType = "采集" };
-            _regionTreeControl.load(1, int.Parse(SqlTools.RecordYear), true);
+            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType, Tools.RecordYear, ALF.MSSQL.Tools.DBName) { AppType = 1 };
             contentControl.Content = _regionTreeControl;
         }
 
@@ -75,9 +72,9 @@ namespace DataCheck_XP.Control
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            if (_templateInfoList == null||_templateInfoList.Count==0)
+            if (_templateInfoList == null || _templateInfoList.Count == 0)
             {
-                WorkWindow.showError("请先选择模板文件");
+                WorkWindow.ShowError("请先选择模板文件");
                 return;
             }
 
@@ -85,15 +82,16 @@ namespace DataCheck_XP.Control
             var task = new Thread(() =>
             {
                 string result;
-                Tools.createReportFile(_templateInfoList, _regionList.ToList(), _regionTreeControl.appType, out result);
+                Tools.CreateReportFile(_templateInfoList, _regionList.ToList(), _regionTreeControl.AppType, out result);
                 Dispatcher.Invoke(_createFinished, result);
             });
             task.Start();
         }
 
+
         private void addButton_Click(object sender, EventArgs e)
         {
-            var tmp = _regionTreeControl.selectItem;
+            var tmp = _regionTreeControl.SelectItem;
 
             if (_regionList.Count(p => p.nodeNo == tmp.nodeNo) != 0)
             {

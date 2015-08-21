@@ -41,8 +41,20 @@
     <ApplicationIcon>SkyCirclePencil.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alf7.Tools.Library">
-      <HintPath>..\..\Alf7.0.MetroLibrary\Alf7.Tools.Library\bin\Debug\Alf7.Tools.Library.dll</HintPath>
+    <Reference Include="ALF.EDU">
+      <HintPath>..\..\..\ALF_DLL\ALF.EDU\bin\Debug\ALF.EDU.dll</HintPath>
+    </Reference>
+    <Reference Include="ALF.MSSQL">
+      <HintPath>..\..\..\ALF_DLL\ALF.MSSQL\bin\Debug\ALF.MSSQL.dll</HintPath>
+    </Reference>
+    <Reference Include="ALF.OFFICE">
+      <HintPath>..\..\..\ALF_DLL\ALF.OFFICE\bin\Debug\ALF.OFFICE.dll</HintPath>
+    </Reference>
+    <Reference Include="ALF.SYSTEM">
+      <HintPath>..\..\..\ALF_DLL\ALF.SYSTEM\bin\Debug\ALF.SYSTEM.dll</HintPath>
+    </Reference>
+    <Reference Include="ALF.UI">
+      <HintPath>..\..\..\ALF_DLL\ALF.UI\bin\Debug\ALF.UI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -115,10 +127,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\Icons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Control\RegionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -155,7 +163,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -163,19 +170,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\WindowsIcons-license.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Entypo-license.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Alf7.UI.Library\Alf7.UI.Library.csproj">
-      <Project>{c0474dc4-a6b0-4e72-9a52-8c026b53068c}</Project>
-      <Name>Alf7.UI.Library</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SkyCirclePencil.ico" />

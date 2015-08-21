@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ALF.EDU.DataModel;
+using DataCheck_XP;
 using MahApps.Metro.Controls;
 
 namespace DataCheck.Info
@@ -94,7 +95,7 @@ namespace DataCheck.Info
                 return;
             }
 
-            Tools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
+            DataCheckTools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
             //Tools.updateArgConfig(_argInfoList);
         }
 

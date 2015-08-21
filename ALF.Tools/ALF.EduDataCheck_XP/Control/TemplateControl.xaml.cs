@@ -7,8 +7,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using Alf7.Tools.Library;
-using Alf7.Tools.Library.DataModel;
+using ALF.EDU;
+using ALF.EDU.DataModel;
 
 namespace DataCheck_XP.Control
 {
@@ -37,10 +37,10 @@ namespace DataCheck_XP.Control
 
         public void load()
         {
-            fileInfoListBox.ItemsSource = Tools.getLocalTemplateFileList(out _tmpResult);
+            fileInfoListBox.ItemsSource = Tools.GetLocalTemplateFileList(out _tmpResult);
             if (_tmpResult != "")
             {
-                WorkWindow.showError(_tmpResult);
+                WorkWindow.ShowError(_tmpResult);
                 return;
             }
 
@@ -50,11 +50,11 @@ namespace DataCheck_XP.Control
                 WorkWindow.Cover.Visibility = Visibility.Collapsed;
                 if (s != "")
                 {
-                    WorkWindow.showError(s);
+                    WorkWindow.ShowError(s);
                     return;
                 }
                 templateInfoControl.load(_templateInfo, true);
-                fileInfoListBox.ItemsSource = Tools.getLocalTemplateFileList(out _tmpResult);
+                fileInfoListBox.ItemsSource = Tools.GetLocalTemplateFileList(out _tmpResult);
 
             };
 
@@ -81,12 +81,13 @@ namespace DataCheck_XP.Control
             {
                 return;
             }
-            uploadFile(dialog.FileName);
+            UploadFile(dialog.FileName);
         }
 
-        private void uploadFile(string fileName)
+        private void UploadFile(string fileName)
         {
-            _file = new FileInfo(string.Format(@"{0}\templateFiles\{1}", Environment.CurrentDirectory, SystemTools.getBasicName(fileName)));
+            _file = new FileInfo(string.Format(@"{0}\templateFiles\{1}", Environment.CurrentDirectory, ALF.SYSTEM.WindowsTools.GetBasicName
+(fileName)));
             _selectedFileName = fileName;
             WorkWindow.Cover.Visibility = Visibility.Visible;
             if (File.Exists(_file.FullName))
@@ -104,7 +105,7 @@ namespace DataCheck_XP.Control
                 }
                 catch (Exception e)
                 {
-                    WorkWindow.showError(e.Message);
+                    WorkWindow.ShowError(e.Message);
                 }
             }
             else
@@ -119,18 +120,18 @@ namespace DataCheck_XP.Control
             var task = new Thread(() =>
             {
                 _templateInfo = new TemplateInfo { templatePath = string.Format(@"{0}\templateFiles\{1}", Environment.CurrentDirectory,_file.Name), templateID = Guid.NewGuid(), templateSize = _file.Length.ToString(CultureInfo.InvariantCulture), templateName = _file.Name, updatetime = DateTime.Now, rowid = Guid.NewGuid() };
-                var argListTmpe = ReportOfficeTools.getArgInfoListFromWord(_templateInfo, out _tmpResult);
+                var argListTmpe = ReportOfficeTools.GetArgInfoListFromWord(_templateInfo, out _tmpResult);
                 if (_tmpResult != "")
                 {
-                    WorkWindow.showError(_tmpResult);
+                    WorkWindow.ShowError(_tmpResult);
                 }
                 else
                 {
-                    _tmpResult = Tools.updateArgConfig(argListTmpe);
+                    _tmpResult = Tools.UpdateArgConfig(argListTmpe);
                     if (_tmpResult == "")
                     {
                         _templateInfo.templatePath = string.Format(@".\templateFiles\{0}",_file.Name);
-                        _tmpResult = Tools.updateTemplateConfig(_templateInfo);
+                        _tmpResult = Tools.UpdateTemplateConfig(_templateInfo);
                     }
                 }
                 Dispatcher.Invoke(_analyzeFinished, _tmpResult);

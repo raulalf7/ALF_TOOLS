@@ -4,13 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Alf7.Tools.Library;
-using Alf7.Tools.Library.DataModel;
-
-using Clipboard = System.Windows.Clipboard;
-using ListBox = System.Windows.Controls.ListBox;
-using MessageBox = System.Windows.MessageBox;
-using SelectionMode = System.Windows.Controls.SelectionMode;
+using ALF.EDU;
+using ALF.EDU.DataModel;
 
 namespace DataCheck_XP.Info
 {
@@ -37,7 +32,7 @@ namespace DataCheck_XP.Info
             mainGrid.DataContext = templateInfo;
 
 
-            _argInfoList = Tools.getArgInfoList(templateInfo, out _tmpReulst);
+            _argInfoList = Tools.GetArgInfoList(templateInfo, out _tmpReulst);
             intialArgList();
             if (argTabControl.Items.Count != 0)
             {
@@ -99,7 +94,7 @@ namespace DataCheck_XP.Info
                 return;
             }
 
-            Tools.showArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
+            //Tools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
             //Tools.updateArgConfig(_argInfoList);
         }
 
@@ -126,7 +121,7 @@ namespace DataCheck_XP.Info
             var allStart = DateTime.Now;
             foreach (var item in _argInfoList)
             {
-                string sql = SqlTools.addCondition(item, regionCondition);
+                string sql = ReportOfficeTools.AddCondition(item, regionCondition);
 
                 if (sql == "")
                 {
@@ -135,7 +130,7 @@ namespace DataCheck_XP.Info
                 sql = string.Format("select '{0} '+'{1} '+'{2} '+'{3} '+convert(nvarchar(50),count(1))+' {5} ' from ({4}) a", item.argNo, item.argBusinessGroup, item.argName, item.businessType, sql, regionA);
 
                 string result;
-                var tmp = SqlTools.getSqlListString(sql, out result);
+                var tmp = ALF.MSSQL.Tools.GetSqlListString(sql, out result);
                 if (result != "")
                 {
                     resultList.Add(string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t", item.argNo, item.argName, item.argBusinessGroup, item.businessType, result, regionA));

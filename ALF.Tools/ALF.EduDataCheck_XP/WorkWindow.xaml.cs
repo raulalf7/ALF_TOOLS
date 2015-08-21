@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Alf7.Tools.Library;
+
 
 
 namespace DataCheck_XP
@@ -21,37 +21,37 @@ namespace DataCheck_XP
 
         public static WorkWindow Window;
 
-        public void load(int index)
+        public void Load(int index)
         {
             Cover = coverGrid;
             Window = this;
 
             regionControl.CreateAction += () =>
             {
-                wordControl.load(false);
+                wordControl.Load(false);
                 tab.SelectedItem = wordControl;
             };
 
-            wordControl.load(true);
+            wordControl.Load(true);
             if (index == 0)
             {
                 string tmpResult;
 
-                var templateInfos = Tools.getLocalTemplateFileList(out tmpResult);
+                var templateInfos = Tools.GetLocalTemplateFileList(out tmpResult);
 
                 if (tmpResult != "")
                 {
-                    showError(tmpResult);
+                    ShowError(tmpResult);
                     return;
                 }
 
                 tab.Items.RemoveAt(0);
-                regionControl.load(templateInfos);
+                regionControl.Load(templateInfos);
                 return;
             }
             templateControl.SelectAction += list =>
             {
-                regionControl.load(list);
+                regionControl.Load(list);
                 tab.SelectedItem = regionControl;
             };
             templateControl.load();
@@ -62,7 +62,7 @@ namespace DataCheck_XP
             return  MessageBox.Show(content, title, MessageBoxButton.OKCancel);
         }
 
-        public static void showInfo(string title, string content)
+        public static void ShowInfo(string title, string content)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace DataCheck_XP
             }
         }
 
-        public static  void showError( string content)
+        public static  void ShowError( string content)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace DataCheck_XP
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            SystemTools.execCmd("mailto:caoqian@moe.edu.cn", "");
+            ALF.SYSTEM.WindowsTools.ExecCmd("mailto:caoqian@moe.edu.cn", "");
         }
     }
 }
