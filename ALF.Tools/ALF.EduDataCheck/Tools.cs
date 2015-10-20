@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using ALF.EDU;
 using ALF.EDU.DataModel;
 using DataCheck.Info;
 using DataCheck_XP;

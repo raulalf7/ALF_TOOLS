@@ -26,7 +26,7 @@ namespace DataCheck_XP.Info
             _argInfo = argInfo;
             _origArg = new ArgInfo {upLimit = argInfo.upLimit, downLimit = argInfo.downLimit, argDataSql = argInfo.argDataSql,argName = argInfo.argName,argNo = argInfo.argNo};
             argPanel.DataContext = _argInfo;
-            bindData();
+            BindData();
         }
         
         private void cancelButton_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace DataCheck_XP.Info
             if (OnOkClose != null) OnOkClose(this, EventArgs.Empty);
         }
 
-        private void bindData()
+        private void BindData()
         {
             foreach (var child in argPanel.Children)
             {

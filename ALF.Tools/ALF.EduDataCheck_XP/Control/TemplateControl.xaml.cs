@@ -26,9 +26,6 @@ namespace DataCheck_XP.Control
         string _tmpResult;
 
 
-
-
-
         Action<string> _analyzeFinished;
         private string _selectedFileName;
         FileInfo _file;

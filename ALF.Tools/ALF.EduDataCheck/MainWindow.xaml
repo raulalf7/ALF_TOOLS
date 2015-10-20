@@ -20,7 +20,7 @@
                     </Rectangle>
                     <TextBlock Margin="5"
                                VerticalAlignment="Center"
-                               Text="V3.1" />
+                               Text="V4.1" />
                 </StackPanel>
             </Button>
         </controls:WindowCommands>
@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
         <!--<titleControl:Text Grid.Row="1" Grid.Column="1" Title="用户名" TitleSize="16" ValueWidth="290"/>
         <titleControl:Text Grid.Row="2" Grid.Column="1" Title="密码" TitleSize="16" ValueWidth="290"/>-->
-        <titleControl:Combo x:Name="serverNameCombo" Grid.Row="1" Grid.Column="1" Title="数据库" TitleSize="16" DisplayMemberPath="connName" ValueWidth="290" SelectionChanged="ServerNameCombo_OnSelectionChanged" />
+        <titleControl:Combo x:Name="serverNameCombo" Grid.Row="1" Grid.Column="1" Title="数据库" TitleSize="16" ValueWidth="290" SelectionChanged="ServerNameCombo_OnSelectionChanged" />
         <titleControl:Combo  x:Name="typeCombo" Grid.Row="2" Grid.Column="1" Title="模式" TitleSize="16"  ValueWidth="290"   />
         <Grid Grid.Row="3" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>

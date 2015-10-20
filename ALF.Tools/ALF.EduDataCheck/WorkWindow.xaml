@@ -20,7 +20,7 @@
                     </Rectangle>
                     <TextBlock Margin="5"
                                VerticalAlignment="Center"
-                               Text="V3.1" />
+                               Text="   " />
                 </StackPanel>
             </Button>
         </controls:WindowCommands>

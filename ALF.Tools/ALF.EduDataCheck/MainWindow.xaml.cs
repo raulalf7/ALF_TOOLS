@@ -53,7 +53,8 @@ namespace DataCheck
                 Tools.ShowError(200);
                 return;
             }
-
+            ALF.EDU.EduTools.RecordYear = Tools.RecordYear.ToString();
+            ALF.MSSQL.Tools.DBName = ALF.EDU.EduTools.EduDBName;
             var windos = new WorkWindow();
             windos.Load(typeCombo.SelectedIndex);
             windos.Show();

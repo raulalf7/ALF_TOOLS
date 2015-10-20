@@ -5,7 +5,7 @@
         Loaded="Window_Loaded"
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
-                      Title="2014年教育事业统计核查工具V3.1(XP版)" Height="300" Width="400">
+                      Title="2015年教育事业统计核查工具V4.1(XP版)" Height="300" Width="400">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,7 +19,7 @@
             <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <titleControl:Combo x:Name="serverNameCombo" Grid.Row="1" Grid.Column="1" Title="服务器" TitleSize="16" DisplayMemberPath="connName" ValueWidth="290" SelectionChanged="ServerNameCombo_OnSelectionChanged" />
+        <titleControl:Combo x:Name="serverNameCombo" Grid.Row="1" Grid.Column="1" Title="服务器" TitleSize="16" ValueWidth="290" SelectionChanged="ServerNameCombo_OnSelectionChanged" />
         <titleControl:Combo x:Name="typeCombo" Grid.Row="2" Grid.Column="1" Title="模式" TitleSize="16"  ValueWidth="290" IsEnable="False" />
         <Grid Grid.Row="3" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
