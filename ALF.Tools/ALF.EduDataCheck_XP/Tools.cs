@@ -53,7 +53,7 @@ namespace DataCheck_XP
                         wordInfo.regionPath, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), itemFile.templateName);
                     File.Copy(itemFile.templatePath, destFilePath, true);
 
-                    result = ReportOfficeTools.UpdateWord(argInfoList, regionString, appType, destFilePath);
+                    result = ReportOfficeTools.UpdateWord(argInfoList, regionString, appType, destFilePath,false);
 
                     if (result != "")
                     {

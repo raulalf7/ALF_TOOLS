@@ -9,7 +9,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <titleControl:Combo x:Name="yearCombo" Title="年份" Grid.Row="0" TitleWidth="40" Items="2012,2013,2015,2015" SelectedIndex="0"/>
+        <titleControl:Combo x:Name="yearCombo" Title="年份" Grid.Row="0" TitleWidth="40" Items="2012,2013,2014,2015" SelectedIndex="0"/>
         <titleControl:Combo x:Name="connCombo" Title="链接" Grid.Row="1" TitleWidth="40" Items="SERVERDATA,SQLEXPRESS,LOCAL" SelectedIndex="0"/>
         <Button Grid.Row="2" Margin="5" Content="登陆" Click="Button_Click"/>
     </Grid>

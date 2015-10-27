@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ALF.SYSTEM">
+    <Reference Include="ALF.SYSTEM, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\ALF_DLL\ALF.SYSTEM\bin\Debug\ALF.SYSTEM.dll</HintPath>
     </Reference>
     <Reference Include="ALF.UI">

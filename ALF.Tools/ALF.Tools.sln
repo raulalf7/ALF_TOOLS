@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataCheck_XP", "ALF.Edu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.EduDataLauncher", "ALF.EduDataLauncher\ALF.EduDataLauncher.csproj", "{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.EduBusinessCellCheck", "EduBusinessCellCheck\ALF.EduBusinessCellCheck.csproj", "{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
