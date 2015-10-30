@@ -5,7 +5,7 @@
                       ResizeMode="CanMinimize"
                       WindowStartupLocation="CenterScreen"
                       Height="680" Width="810"
-                      Title="2015年教育事业统计核查工具V4.1(XP版)">
+                      Title="2015年教育事业统计核查工具正式版(高等教育)V4.4(XP版)">
     <Grid>
         <Grid  Opacity="0.1" Background="Black" Panel.ZIndex="998" x:Name="coverGrid"  Visibility="Collapsed">
             <TextBlock Text="生成报告中" VerticalAlignment="Center" HorizontalAlignment="Center" />

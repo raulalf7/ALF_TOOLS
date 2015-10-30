@@ -5,7 +5,7 @@
         Loaded="Window_Loaded"
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
-                      Title="2015年教育事业统计核查工具V4.2(XP)" Height="300" Width="400">
+                      Title="2015年教育事业统计核查工具正式版(高等教育)V4.4(XP)" Height="300" Width="400">
 
     <Grid>
         <Grid.RowDefinitions>

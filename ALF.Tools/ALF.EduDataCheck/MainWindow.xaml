@@ -8,7 +8,7 @@
                       WindowStartupLocation="CenterScreen"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:titleControl="clr-namespace:ALF.METROUI.TitleControl;assembly=ALF.METROUI"
-                      Title="教育事业统计数据核查系统" Height="300" Width="400">
+                      Title="2015年教育事业统计核查工具正式版(高等教育)V4.4" Height="300" Width="400">
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button Click="ButtonBase_OnClick">
@@ -20,7 +20,7 @@
                     </Rectangle>
                     <TextBlock Margin="5"
                                VerticalAlignment="Center"
-                               Text="V4.2" />
+                               Text="V4.4" />
                 </StackPanel>
             </Button>
         </controls:WindowCommands>
