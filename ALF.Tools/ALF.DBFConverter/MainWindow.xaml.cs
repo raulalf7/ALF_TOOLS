@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Forms;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Input;
+using ALF.MSSQL;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace DBFConverter
+namespace ALF.DBFConverter
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -55,7 +56,7 @@ namespace DBFConverter
 
             Dispatcher.Invoke(coverAction, Visibility.Visible);
 
-            string tmp = ALF.MSSQL.Tools.ExecSql(@"                                
+            string tmp = Tools.ExecSql(@"                                
                                 exec sp_configure 'show advanced options',1
                                 reconfigure
                                 exec sp_configure 'Ad Hoc Distributed Queries',1
@@ -84,7 +85,7 @@ namespace DBFConverter
                 Dispatcher.Invoke(action, string.Format("转换失败【{0}】，错误原因【{1}】\n\n", path, tmp));
             }
 
-            ALF.MSSQL.Tools.ExecSql(@"
+            Tools.ExecSql(@"
                                 exec sp_configure 'show advanced options',0
                                 reconfigure
                                 exec sp_configure 'Ad Hoc Distributed Queries',0
@@ -110,8 +111,10 @@ namespace DBFConverter
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
+            Tools.DataBaseType = ALF.MSSQL.DataModel.DataBaseEngineType.MsSqlServer;
+
             TheMainWindow = this;
-            var dbNameList = ALF.MSSQL.Tools.GetSqlListString("select  name from master..SysDatabases ", out _tmp);
+            var dbNameList = Tools.GetSqlListString("select  name from master..SysDatabases ", out _tmp);
             if (_tmp != "")
             {
                 ShowError(_tmp);
@@ -119,11 +122,16 @@ namespace DBFConverter
             }
             dbComboBox.ItemsSource = dbNameList;
             dbComboBox.SelectedIndex = 0;
+
+
+            linkComboBox.ItemsSource = new List<string>() {"VFPOLEDB.1", "MSDASQL", "ACE.OLEDB", "JET.OLEDB"};
+            linkComboBox.SelectedIndex = 0;
+
         }
 
         private void DbComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ALF.MSSQL.Tools.DBName=dbComboBox.SelectedItem.ToString();
+            Tools.DBName=dbComboBox.SelectedItem.ToString();
         }
 
         public static async void ShowError(string errorMessage)
@@ -141,16 +149,33 @@ namespace DBFConverter
         {
             string folderPath = path.Substring(0, path.LastIndexOf('\\'));
             string fileTitle = path.Substring(path.LastIndexOf('\\') + 1, path.LastIndexOf('.') - path.LastIndexOf('\\') - 1);
-            ALF.MSSQL.Tools.ExecSql(string.Format(@"if exists (select * from sysobjects where name='{0}')
+            Tools.ExecSql(string.Format(@"if exists (select * from sysobjects where name='{0}')
                                         begin 
                                         drop table {0}
                                         end", fileTitle));
+
+
+            var linkStringList = new List<string>()
+            {
+                "select * into {1} from openrowset('VFPOLEDB.1','{0}';'admin';'' ,'select * from {1}.DBF')",
+                "select * into {1} from openrowset('MSDASQL','Driver=Microsoft Visual FoxPro Driver;SourceType=DBF;SourceDB={0}','select * from {1}.DBF')",
+                "select * into {1} from OPENROWSET('Microsoft.ACE.OLEDB.12.0','dBase IV;HDR=NO;IMEX=2;DATABASE={0}','select * from {1}.dbf')",
+                "select * into {1} from OPENROWSET('MICROSOFT.JET.OLEDB.4.0','dBase IV;HDR=NO;IMEX=2;DATABASE={0}','select * from {1}.dbf')"
+            };
             //select * into {1} from openrowset('VFPOLEDB.1','{0}';'admin';'' ,'select * from {1}.DBF')
             //select * into {1} from openrowset('MSDASQL','Driver=Microsoft Visual FoxPro Driver;SourceType=DBF;SourceDB={0}','select * from {1}.DBF')
             //select * into {1} from OPENROWSET('Microsoft.ACE.OLEDB.12.0','dBase IV;HDR=NO;IMEX=2;DATABASE={0}','select * from {1}.dbf')
             //OPENROWSET('MICROSOFT.JET.OLEDB.4.0','dBase    IV;HDR=NO;IMEX=2;DATABASE=
-            string command = string.Format("select * into [{1}] from openrowset('MSDASQL','Driver=Microsoft Visual FoxPro Driver;SourceType=DBF;SourceDB={0}','select * from {1}.DBF')", folderPath, fileTitle);
-            return ALF.MSSQL.Tools.ExecSql(command);
+         //   string command = string.Format("select * into [{1}] from openrowset('MSDASQL','Driver=Microsoft Visual FoxPro Driver;SourceType=DBF;SourceDB={0}','select * from {1}.DBF')", folderPath, fileTitle);
+
+            string command = string.Format(linkStringList[_selectedLinkIndex], folderPath, fileTitle);
+            return Tools.ExecSql(command);
+        }
+
+        private static int _selectedLinkIndex;
+        private void LinkComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedLinkIndex = linkComboBox.SelectedIndex;
         }
     }
 }

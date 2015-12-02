@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="SilverlightUploadServiceSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:56696/SilverlightUploadService.asmx" binding="basicHttpBinding"
+                bindingConfiguration="SilverlightUploadServiceSoap" contract="SilverlightUploadServiceReference.SilverlightUploadServiceSoap"
+                name="SilverlightUploadServiceSoap" />
+        </client>
+    </system.serviceModel>
+</configuration>

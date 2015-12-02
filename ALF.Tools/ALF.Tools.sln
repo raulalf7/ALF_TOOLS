@@ -11,7 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataCheck_XP", "ALF.Edu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.EduDataLauncher", "ALF.EduDataLauncher\ALF.EduDataLauncher.csproj", "{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.EduBusinessCellCheck", "EduBusinessCellCheck\ALF.EduBusinessCellCheck.csproj", "{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.SL.UploadWeb", "ALF.SL.UploadWeb\ALF.SL.UploadWeb.csproj", "{637392B5-4C92-462B-BF25-DA16FBCCAF50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E} = {E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.SL.UploadWeb.Web", "ALF.SL.UploadWeb.Web\ALF.SL.UploadWeb.Web.csproj", "{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +40,14 @@ Global
 		{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AB6D9D8-F8CD-403D-AE61-6B89572DA93C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{637392B5-4C92-462B-BF25-DA16FBCCAF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637392B5-4C92-462B-BF25-DA16FBCCAF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637392B5-4C92-462B-BF25-DA16FBCCAF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637392B5-4C92-462B-BF25-DA16FBCCAF50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

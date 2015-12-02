@@ -21,7 +21,7 @@ namespace ALF.EduDataLauncher
             {
                 exeName = string.Format("EduClient{0}.exe", year);
             }
-            SYSTEM.WindowsTools.ExecCmd(string.Format(@"{2}\{0}\{1}", year, exeName,Environment.CurrentDirectory), connCombo.SelectedItem.ToString(),false,false,false);
+            SYSTEM.WindowsTools.ExecCmd(string.Format(@"{2}\{0}\{1}", year, exeName, Environment.CurrentDirectory), connCombo.SelectedItem.ToString(), true, true, true);
         }
 
 
