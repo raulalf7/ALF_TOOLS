@@ -2,72 +2,30 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using ALF.SL.UploadWeb.DataModel;
+using ALF.SILVERLIGHT;
+using ALF.SILVERLIGHT.DataModel;
+using Enum = ALF.SILVERLIGHT.DataModel.Enum;
 
 namespace ALF.SL.UploadWeb
 {
     public partial class MainPage
     {
-        private readonly FileCollection _files;
-        private string _customParams;
+        private readonly UploadFileCollection _files;
         private string _fileFilter;
         private int _maxFileSize = int.MaxValue;
-        private int _maxUpload = 2;
 
-        public MainPage(IDictionary<string, string> initParams)
+        public MainPage()
         {
             InitializeComponent();
 
-            LoadConfiguration(initParams);
 
-            _files = new FileCollection(_customParams, _maxUpload);
+            _files = new UploadFileCollection();
             fileList.ItemsSource = _files;
             filesCount.DataContext = _files;
             totalProgress.DataContext = _files;
             totalKb.DataContext = _files;
         }
 
-        /// <summary>
-        ///     加载配置参数 then from .Config file
-        /// </summary>
-        /// <param name="initParams"></param>
-        private void LoadConfiguration(IDictionary<string, string> initParams)
-        {
-            //加载定制配置信息串
-            if (initParams.ContainsKey("CustomParam") && !string.IsNullOrEmpty(initParams["CustomParam"]))
-                _customParams = initParams["CustomParam"];
-
-            if (initParams.ContainsKey("MaxUploads") && !string.IsNullOrEmpty(initParams["MaxUploads"]))
-            {
-                int.TryParse(initParams["MaxUploads"], out _maxUpload);
-            }
-
-            if (initParams.ContainsKey("MaxFileSizeKB") && !string.IsNullOrEmpty(initParams["MaxFileSizeKB"]))
-            {
-                if (int.TryParse(initParams["MaxFileSizeKB"], out _maxFileSize))
-                    _maxFileSize = _maxFileSize*1024;
-            }
-
-            if (initParams.ContainsKey("FileFilter") && !string.IsNullOrEmpty(initParams["FileFilter"]))
-                _fileFilter = initParams["FileFilter"];
-
-            _maxFileSize = 2000000*1024;
-            _maxUpload = 5;
-
-            ////从配置文件中获取相关信息
-            //if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MaxFileSizeKB"]))
-            //{
-            //    if (int.TryParse(ConfigurationManager.AppSettings["MaxFileSizeKB"], out _maxFileSize))
-            //        _maxFileSize = _maxFileSize * 1024;
-            //}
-
-
-            //if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["MaxUploads"]))
-            //    int.TryParse(ConfigurationManager.AppSettings["MaxUploads"], out _maxUpload);
-
-            //if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["FileFilter"]))
-            //    _fileFilter = ConfigurationManager.AppSettings["FileFilter"];
-        }
 
         /// <summary>
         ///     选择文件对话框事件
@@ -92,7 +50,7 @@ namespace ALF.SL.UploadWeb
             if (ofd.ShowDialog() != true) return;
             foreach (var file in ofd.Files)
             {
-                var userFile = new UserFile
+                var userFile = new UploadFile
                 {
                     FileName = file.Name,
                     FileStream = file.OpenRead()
@@ -124,7 +82,16 @@ namespace ALF.SL.UploadWeb
             }
             else
             {
-                _files.UploadFiles();
+                foreach (var file in _files)
+                {
+
+                    if (!file.IsDeleted && file.State == Enum.UploadStates.Pending)
+                    {
+                        var fileUploader = new UploadTools(file, "http://192.168.0.209/SilverlightUploadService.svc");
+                        fileUploader.UploadAdvanced();
+                    }
+                }
+                //_files.UploadFiles();
             }
         }
 

@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using ALF.SL.UploadWeb.DataModel;
+using ALF.SILVERLIGHT.DataModel;
 
 namespace ALF.SL.UploadWeb
 {
@@ -16,12 +16,12 @@ namespace ALF.SL.UploadWeb
             Loaded += FileRowControl_Loaded;
         }
 
-        private UserFile UserFile
+        private UploadFile UserFile
         {
             get
             {
                 if (DataContext != null)
-                    return ((UserFile) DataContext);
+                    return ((UploadFile) DataContext);
                 return null;
             }
         }
@@ -36,14 +36,14 @@ namespace ALF.SL.UploadWeb
         {
             if (e.PropertyName != "State") return;
             //当前文件上传完毕后显示灰字
-            if (UserFile.State == Constants.FileStates.Finished)
+            if (UserFile.State == Enum.UploadStates.Finished)
             {
                 GreyOutText();
                 ShowValidIcon();
             }
 
             //如上传失败显示错误信息
-            if (UserFile.State == Constants.FileStates.Error)
+            if (UserFile.State == Enum.UploadStates.Error)
             {
                 ErrorMsgTextBlock.Visibility = Visibility.Visible;
             }
@@ -66,7 +66,7 @@ namespace ALF.SL.UploadWeb
 
         private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var file = (UserFile) ((TextBlock) e.OriginalSource).DataContext;
+            var file = (UploadFile) ((TextBlock) e.OriginalSource).DataContext;
             file.IsDeleted = true;
 
             Visibility = Visibility.Collapsed;
@@ -74,7 +74,7 @@ namespace ALF.SL.UploadWeb
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var file = (UserFile) ((Button) e.OriginalSource).DataContext;
+            var file = (UploadFile) ((Button) e.OriginalSource).DataContext;
             file.IsDeleted = true;
 
             Visibility = Visibility.Collapsed;
