@@ -177,7 +177,6 @@ namespace ALF.SL.UploadWeb.DataModel
         private void fileUploader_UploadFinished(object sender, EventArgs e)
         {
             _fileUploader = null;
-
             State = Constants.FileStates.Finished;
         }
 

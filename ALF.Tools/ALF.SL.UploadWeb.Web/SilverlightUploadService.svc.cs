@@ -1,18 +1,17 @@
 ﻿using System.IO;
-using System.Web.Hosting;
-using System.Web.Services;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.Web.Hosting; 
 
 namespace ALF.SL.UploadWeb.Web
 {
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    //若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消对下行的注释。 
-    // [System.Web.Script.Services.ScriptService]
-    public class SilverlightUploadService : WebService
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class SilverlightUploadService
     {
         private string _tempExtension = "_temp";
 
-        [WebMethod]
+        [OperationContract]
         public void StoreFileAdvanced(string fileName, byte[] data, int dataLength, string parameters, bool firstChunk, bool lastChunk)
         {
             string uploadFolder = GetUploadFolder();
@@ -46,7 +45,7 @@ namespace ALF.SL.UploadWeb.Web
 
         }
 
-        [WebMethod]
+        [OperationContract]
         public void CancelUpload(string fileName)
         {
             string uploadFolder = GetUploadFolder();
@@ -76,6 +75,4 @@ namespace ALF.SL.UploadWeb.Web
         }
 
     }
-
-
 }

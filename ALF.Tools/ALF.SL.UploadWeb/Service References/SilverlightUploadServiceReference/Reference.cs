@@ -15,169 +15,27 @@ namespace ALF.SL.UploadWeb.SilverlightUploadServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SilverlightUploadServiceReference.SilverlightUploadServiceSoap")]
-    public interface SilverlightUploadServiceSoap {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="SilverlightUploadServiceReference.SilverlightUploadService")]
+    public interface SilverlightUploadService {
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/StoreFileAdvanced", ReplyAction="*")]
-        System.IAsyncResult BeginStoreFileAdvanced(ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequest request, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:SilverlightUploadService/StoreFileAdvanced", ReplyAction="urn:SilverlightUploadService/StoreFileAdvancedResponse")]
+        System.IAsyncResult BeginStoreFileAdvanced(string fileName, byte[] data, int dataLength, string parameters, bool firstChunk, bool lastChunk, System.AsyncCallback callback, object asyncState);
         
-        ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse EndStoreFileAdvanced(System.IAsyncResult result);
+        void EndStoreFileAdvanced(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/CancelUpload", ReplyAction="*")]
-        System.IAsyncResult BeginCancelUpload(ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequest request, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:SilverlightUploadService/CancelUpload", ReplyAction="urn:SilverlightUploadService/CancelUploadResponse")]
+        System.IAsyncResult BeginCancelUpload(string fileName, System.AsyncCallback callback, object asyncState);
         
-        ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse EndCancelUpload(System.IAsyncResult result);
+        void EndCancelUpload(System.IAsyncResult result);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface SilverlightUploadServiceChannel : ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class StoreFileAdvancedRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="StoreFileAdvanced", Namespace="http://tempuri.org/", Order=0)]
-        public ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequestBody Body;
-        
-        public StoreFileAdvancedRequest() {
-        }
-        
-        public StoreFileAdvancedRequest(ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class StoreFileAdvancedRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string fileName;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public byte[] data;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public int dataLength;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string parameters;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-        public bool firstChunk;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-        public bool lastChunk;
-        
-        public StoreFileAdvancedRequestBody() {
-        }
-        
-        public StoreFileAdvancedRequestBody(string fileName, byte[] data, int dataLength, string parameters, bool firstChunk, bool lastChunk) {
-            this.fileName = fileName;
-            this.data = data;
-            this.dataLength = dataLength;
-            this.parameters = parameters;
-            this.firstChunk = firstChunk;
-            this.lastChunk = lastChunk;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class StoreFileAdvancedResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="StoreFileAdvancedResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponseBody Body;
-        
-        public StoreFileAdvancedResponse() {
-        }
-        
-        public StoreFileAdvancedResponse(ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class StoreFileAdvancedResponseBody {
-        
-        public StoreFileAdvancedResponseBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CancelUploadRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CancelUpload", Namespace="http://tempuri.org/", Order=0)]
-        public ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequestBody Body;
-        
-        public CancelUploadRequest() {
-        }
-        
-        public CancelUploadRequest(ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class CancelUploadRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string fileName;
-        
-        public CancelUploadRequestBody() {
-        }
-        
-        public CancelUploadRequestBody(string fileName) {
-            this.fileName = fileName;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CancelUploadResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CancelUploadResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponseBody Body;
-        
-        public CancelUploadResponse() {
-        }
-        
-        public CancelUploadResponse(ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class CancelUploadResponseBody {
-        
-        public CancelUploadResponseBody() {
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface SilverlightUploadServiceSoapChannel : ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SilverlightUploadServiceSoapClient : System.ServiceModel.ClientBase<ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap>, ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap {
+    public partial class SilverlightUploadServiceClient : System.ServiceModel.ClientBase<ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService>, ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService {
         
         private BeginOperationDelegate onBeginStoreFileAdvancedDelegate;
         
@@ -203,22 +61,22 @@ namespace ALF.SL.UploadWeb.SilverlightUploadServiceReference {
         
         private System.Threading.SendOrPostCallback onCloseCompletedDelegate;
         
-        public SilverlightUploadServiceSoapClient() {
+        public SilverlightUploadServiceClient() {
         }
         
-        public SilverlightUploadServiceSoapClient(string endpointConfigurationName) : 
+        public SilverlightUploadServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public SilverlightUploadServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public SilverlightUploadServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public SilverlightUploadServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public SilverlightUploadServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public SilverlightUploadServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public SilverlightUploadServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -253,31 +111,13 @@ namespace ALF.SL.UploadWeb.SilverlightUploadServiceReference {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap.BeginStoreFileAdvanced(ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginStoreFileAdvanced(request, callback, asyncState);
+        System.IAsyncResult ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService.BeginStoreFileAdvanced(string fileName, byte[] data, int dataLength, string parameters, bool firstChunk, bool lastChunk, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginStoreFileAdvanced(fileName, data, dataLength, parameters, firstChunk, lastChunk, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private System.IAsyncResult BeginStoreFileAdvanced(string fileName, byte[] data, int dataLength, string parameters, bool firstChunk, bool lastChunk, System.AsyncCallback callback, object asyncState) {
-            ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequest inValue = new ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequest();
-            inValue.Body = new ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequestBody();
-            inValue.Body.fileName = fileName;
-            inValue.Body.data = data;
-            inValue.Body.dataLength = dataLength;
-            inValue.Body.parameters = parameters;
-            inValue.Body.firstChunk = firstChunk;
-            inValue.Body.lastChunk = lastChunk;
-            return ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap)(this)).BeginStoreFileAdvanced(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap.EndStoreFileAdvanced(System.IAsyncResult result) {
-            return base.Channel.EndStoreFileAdvanced(result);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private void EndStoreFileAdvanced(System.IAsyncResult result) {
-            ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse retVal = ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap)(this)).EndStoreFileAdvanced(result);
+        void ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService.EndStoreFileAdvanced(System.IAsyncResult result) {
+            base.Channel.EndStoreFileAdvanced(result);
         }
         
         private System.IAsyncResult OnBeginStoreFileAdvanced(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -287,11 +127,11 @@ namespace ALF.SL.UploadWeb.SilverlightUploadServiceReference {
             string parameters = ((string)(inValues[3]));
             bool firstChunk = ((bool)(inValues[4]));
             bool lastChunk = ((bool)(inValues[5]));
-            return this.BeginStoreFileAdvanced(fileName, data, dataLength, parameters, firstChunk, lastChunk, callback, asyncState);
+            return ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService)(this)).BeginStoreFileAdvanced(fileName, data, dataLength, parameters, firstChunk, lastChunk, callback, asyncState);
         }
         
         private object[] OnEndStoreFileAdvanced(System.IAsyncResult result) {
-            this.EndStoreFileAdvanced(result);
+            ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService)(this)).EndStoreFileAdvanced(result);
             return null;
         }
         
@@ -326,35 +166,22 @@ namespace ALF.SL.UploadWeb.SilverlightUploadServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap.BeginCancelUpload(ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginCancelUpload(request, callback, asyncState);
+        System.IAsyncResult ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService.BeginCancelUpload(string fileName, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCancelUpload(fileName, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private System.IAsyncResult BeginCancelUpload(string fileName, System.AsyncCallback callback, object asyncState) {
-            ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequest inValue = new ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequest();
-            inValue.Body = new ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequestBody();
-            inValue.Body.fileName = fileName;
-            return ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap)(this)).BeginCancelUpload(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap.EndCancelUpload(System.IAsyncResult result) {
-            return base.Channel.EndCancelUpload(result);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private void EndCancelUpload(System.IAsyncResult result) {
-            ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse retVal = ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap)(this)).EndCancelUpload(result);
+        void ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService.EndCancelUpload(System.IAsyncResult result) {
+            base.Channel.EndCancelUpload(result);
         }
         
         private System.IAsyncResult OnBeginCancelUpload(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string fileName = ((string)(inValues[0]));
-            return this.BeginCancelUpload(fileName, callback, asyncState);
+            return ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService)(this)).BeginCancelUpload(fileName, callback, asyncState);
         }
         
         private object[] OnEndCancelUpload(System.IAsyncResult result) {
-            this.EndCancelUpload(result);
+            ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService)(this)).EndCancelUpload(result);
             return null;
         }
         
@@ -449,40 +276,43 @@ namespace ALF.SL.UploadWeb.SilverlightUploadServiceReference {
             base.InvokeAsync(this.onBeginCloseDelegate, null, this.onEndCloseDelegate, this.onCloseCompletedDelegate, userState);
         }
         
-        protected override ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap CreateChannel() {
-            return new SilverlightUploadServiceSoapClientChannel(this);
+        protected override ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService CreateChannel() {
+            return new SilverlightUploadServiceClientChannel(this);
         }
         
-        private class SilverlightUploadServiceSoapClientChannel : ChannelBase<ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap>, ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap {
+        private class SilverlightUploadServiceClientChannel : ChannelBase<ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService>, ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService {
             
-            public SilverlightUploadServiceSoapClientChannel(System.ServiceModel.ClientBase<ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadServiceSoap> client) : 
+            public SilverlightUploadServiceClientChannel(System.ServiceModel.ClientBase<ALF.SL.UploadWeb.SilverlightUploadServiceReference.SilverlightUploadService> client) : 
                     base(client) {
             }
             
-            public System.IAsyncResult BeginStoreFileAdvanced(ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedRequest request, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = request;
+            public System.IAsyncResult BeginStoreFileAdvanced(string fileName, byte[] data, int dataLength, string parameters, bool firstChunk, bool lastChunk, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[6];
+                _args[0] = fileName;
+                _args[1] = data;
+                _args[2] = dataLength;
+                _args[3] = parameters;
+                _args[4] = firstChunk;
+                _args[5] = lastChunk;
                 System.IAsyncResult _result = base.BeginInvoke("StoreFileAdvanced", _args, callback, asyncState);
                 return _result;
             }
             
-            public ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse EndStoreFileAdvanced(System.IAsyncResult result) {
+            public void EndStoreFileAdvanced(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse _result = ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse)(base.EndInvoke("StoreFileAdvanced", _args, result)));
-                return _result;
+                base.EndInvoke("StoreFileAdvanced", _args, result);
             }
             
-            public System.IAsyncResult BeginCancelUpload(ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadRequest request, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginCancelUpload(string fileName, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = request;
+                _args[0] = fileName;
                 System.IAsyncResult _result = base.BeginInvoke("CancelUpload", _args, callback, asyncState);
                 return _result;
             }
             
-            public ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse EndCancelUpload(System.IAsyncResult result) {
+            public void EndCancelUpload(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse _result = ((ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse)(base.EndInvoke("CancelUpload", _args, result)));
-                return _result;
+                base.EndInvoke("CancelUpload", _args, result);
             }
         }
     }

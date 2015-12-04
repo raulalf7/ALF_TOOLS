@@ -113,35 +113,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\SilverlightUploadServiceReference\ALF.SL.UploadWeb.SilverlightUploadServiceReference.CancelUploadResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService.disco" />
+    <None Include="Service References\SilverlightUploadServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\SilverlightUploadServiceReference\configuration.svcinfo" />
+    <None Include="Service References\SilverlightUploadServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SilverlightUploadServiceReference\ALF.SL.UploadWeb.SilverlightUploadServiceReference.StoreFileAdvancedResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService.wsdl" />
     <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService.wsdl" />
+    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService1.wsdl" />
+    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SilverlightUploadServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\SilverlightUploadServiceReference\SilverlightUploadService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\SilverlightUploadServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\SilverlightUploadServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\SilverlightUploadServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

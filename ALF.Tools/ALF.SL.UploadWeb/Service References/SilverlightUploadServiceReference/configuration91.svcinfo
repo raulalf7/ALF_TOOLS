@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="iSgo1yJJvW2XGJrVIj0NRhlOZno=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="HLFvGJEaqg7W/XdGNFiymJOBCFs=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="SilverlightUploadServiceSoap">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_SilverlightUploadService">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SilverlightUploadServiceSoap</serializedValue>
+          <serializedValue>BasicHttpBinding_SilverlightUploadService</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="SilverlightUploadServiceSoap" contract="SilverlightUploadServiceReference.SilverlightUploadServiceSoap" bindingType="basicHttpBinding" address="../SilverlightUploadService.asmx" bindingConfiguration="SilverlightUploadServiceSoap">
+    <endpoint name="BasicHttpBinding_SilverlightUploadService" contract="SilverlightUploadServiceReference.SilverlightUploadService" bindingType="basicHttpBinding" address="../SilverlightUploadService.svc" bindingConfiguration="BasicHttpBinding_SilverlightUploadService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>../SilverlightUploadService.asmx</serializedValue>
+          <serializedValue>../SilverlightUploadService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,10 +124,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SilverlightUploadServiceSoap</serializedValue>
+          <serializedValue>BasicHttpBinding_SilverlightUploadService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SilverlightUploadServiceReference.SilverlightUploadServiceSoap</serializedValue>
+          <serializedValue>SilverlightUploadServiceReference.SilverlightUploadService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>SilverlightUploadServiceSoap</serializedValue>
+          <serializedValue>BasicHttpBinding_SilverlightUploadService</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

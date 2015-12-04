@@ -65,14 +65,13 @@
     <Content Include="ALF.SL.UploadWebPage.html" />
     <Content Include="ClientBin\ALF.SL.UploadWeb.xap" />
     <Content Include="Silverlight.js" />
-    <Content Include="SilverlightUploadService.asmx" />
+    <Content Include="SilverlightUploadService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SilverlightUploadService.asmx.cs">
-      <DependentUpon>SilverlightUploadService.asmx</DependentUpon>
-      <SubType>Component</SubType>
+    <Compile Include="SilverlightUploadService.svc.cs">
+      <DependentUpon>SilverlightUploadService.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

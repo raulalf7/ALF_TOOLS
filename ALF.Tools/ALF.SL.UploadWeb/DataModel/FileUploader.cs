@@ -10,7 +10,7 @@ namespace ALF.SL.UploadWeb.DataModel
     /// </summary>
     public class FileUploader
     {
-        private readonly SilverlightUploadServiceSoapClient _client;
+        private readonly SilverlightUploadServiceClient _client;
         private readonly long _dataLength;
         private readonly UserFile _file;
         private long _dataSent;
@@ -25,8 +25,8 @@ namespace ALF.SL.UploadWeb.DataModel
             _dataLength = _file.FileStream.Length;
             _dataSent = 0;
 
-            //创建WCF端，此处被注释
-            _client = ServerManager.GetPox();
+            ////创建WCF端，此处被注释
+            _client = new SilverlightUploadServiceClient( );
             //事件绑定
             _client.StoreFileAdvancedCompleted += _client_StoreFileAdvancedCompleted;
             _client.CancelUploadCompleted += _client_CancelUploadCompleted;
@@ -56,6 +56,12 @@ namespace ALF.SL.UploadWeb.DataModel
             //文件是否上传完毕?
             if (bytesRead != 0)
             {
+                if (_client.ChannelFactory.State==CommunicationState.Closed)
+                {
+   //                 _client.ChannelFactory.Open();
+                }
+
+
                 _dataSent += bytesRead;
 
                 if (_dataSent == _dataLength)
@@ -76,8 +82,8 @@ namespace ALF.SL.UploadWeb.DataModel
                 //当上传完毕后
                 _file.FileStream.Dispose();
                 _file.FileStream.Close();
-
-                _client.ChannelFactory.Close();
+                ChannelIsClosed();
+                //          _client.ChannelFactory.Close();
             }
         }
 
@@ -120,7 +126,7 @@ namespace ALF.SL.UploadWeb.DataModel
         private void _client_CancelUploadCompleted(object sender, AsyncCompletedEventArgs e)
         {
             //当取消上传完成后关闭Channel
-            _client.ChannelFactory.Close();
+         //   _client.ChannelFactory.Close();
         }
 
         /// <summary>
@@ -144,23 +150,5 @@ namespace ALF.SL.UploadWeb.DataModel
         }
 
         #endregion
-    }
-
-
-    public class ServerManager
-    {
-        private static readonly SilverlightUploadServiceSoapClient ServicePicture =
-            new SilverlightUploadServiceSoapClient();
-
-        internal static SilverlightUploadServiceSoapClient GetPox()
-        {
-            if (ServicePicture.State == CommunicationState.Created)
-            {
-                ServicePicture.Endpoint.Address =
-                    new EndpointAddress("http://localhost:56696/SilverlightUploadService.asmx");
-                return ServicePicture;
-            }
-            return ServicePicture;
-        }
     }
 }
