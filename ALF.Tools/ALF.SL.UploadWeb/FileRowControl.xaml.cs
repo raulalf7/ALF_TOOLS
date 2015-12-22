@@ -45,14 +45,13 @@ namespace ALF.SL.UploadWeb
             //如上传失败显示错误信息
             if (UserFile.State == Enum.UploadStates.Error)
             {
-                ErrorMsgTextBlock.Visibility = Visibility.Visible;
+                errorMsgTextBlock.Visibility = Visibility.Visible;
             }
         }
 
         private void ShowValidIcon()
         {
             percentageProgress.Visibility = Visibility.Collapsed;
-            validUploadIcon.Visibility = Visibility.Visible;
         }
 
         private void GreyOutText()

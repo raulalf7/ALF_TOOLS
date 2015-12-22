@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using ALF.SILVERLIGHT;
@@ -11,11 +10,12 @@ namespace ALF.SL.UploadWeb
     public partial class MainPage
     {
         private readonly UploadFileCollection _files;
-        private string _fileFilter;
+        private readonly string _fileFilter;
         private int _maxFileSize = int.MaxValue;
 
-        public MainPage()
+        public MainPage(string fileFilter)
         {
+            _fileFilter = fileFilter;
             InitializeComponent();
 
 
@@ -87,7 +87,8 @@ namespace ALF.SL.UploadWeb
 
                     if (!file.IsDeleted && file.State == Enum.UploadStates.Pending)
                     {
-                        var fileUploader = new UploadTools(file, "http://192.168.0.209/SilverlightUploadService.svc");
+                        //var fileUploader = new UploadTools(file, "http://192.168.0.209/SilverlightUploadService.svc");
+                        var fileUploader = new UploadTools(file, "http://172.21.28.50/Upload/SilverlightUploadService.svc");
                         fileUploader.UploadAdvanced();
                     }
                 }

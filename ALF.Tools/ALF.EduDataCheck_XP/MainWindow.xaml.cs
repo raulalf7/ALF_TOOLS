@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-
+using ALF.MSSQL.DataModel;
 using ALF.SYSTEM.DataModel;
 
 namespace DataCheck_XP
@@ -22,7 +22,8 @@ namespace DataCheck_XP
             serverNameCombo.ItemsSource = new List<object>
                 {
                    ALF.MSSQL.DataModel.DataBaseEngineType.MsSqlServer,
-                   ALF.MSSQL.DataModel.DataBaseEngineType.SqlExpress
+                   ALF.MSSQL.DataModel.DataBaseEngineType.SqlExpress,
+                   "ServerData"
                 };
             serverNameCombo.SelectedIndex = 0;
 
@@ -75,7 +76,13 @@ namespace DataCheck_XP
                 ALF.MSSQL.Tools.DataBaseType = ALF.MSSQL.DataModel.DataBaseEngineType.MsSqlServer;
                 return;
             }
-            ALF.MSSQL.Tools.DataBaseType = ALF.MSSQL.DataModel.DataBaseEngineType.SqlExpress;
+            if (serverNameCombo.SelectedIndex == 1)
+            {
+                ALF.MSSQL.Tools.DataBaseType = ALF.MSSQL.DataModel.DataBaseEngineType.SqlExpress;
+                return;
+            }
+            ALF.MSSQL.Tools.DataBaseType = DataBaseEngineType.Remote;
+            ALF.MSSQL.Tools.ConnInfo = new ConnInfo() { ConnIp = "192.168.0.10" , ConnPw = "abc123,"};
         }
     }
 }

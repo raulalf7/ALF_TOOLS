@@ -18,7 +18,7 @@ namespace ALF.SL.UploadWeb
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            RootVisual = new MainPage();
+            RootVisual = new MainPage("");
         }
 
         private void Application_Exit(object sender, EventArgs e)

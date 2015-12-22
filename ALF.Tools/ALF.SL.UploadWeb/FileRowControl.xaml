@@ -16,13 +16,10 @@
                     <TextBlock x:Name="fileSizeTextBlock" Text="{Binding FileSize, Converter={StaticResource ByteConverter}}" Width="60" TextAlignment="Right" Margin="0,0,5,0" />
                     <TextBlock  Text="{Binding BytesUploaded}" Width="50" TextAlignment="Right" Visibility="Collapsed"/>
                     <ProgressBar x:Name="percentageProgress" Width="200" Value="{Binding Percentage}"/>
-                    <StackPanel x:Name="validUploadIcon" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-                        <Image Source="Img/tick.png" Height="15"/>
-                    </StackPanel>
                     <TextBlock Text="{Binding Percentage}" Width="20" TextAlignment="Right" Visibility="Collapsed" />
-                    <Button Content="Img/cancel.png" Height="15" Click="Button_Click" Margin="5,0,0,0" />
+                    <Button Content="cancel" Height="15" Click="Button_Click" Margin="5,0,0,0" />
                 </StackPanel>
-                <TextBlock Foreground="Red" x:Name="ErrorMsgTextBlock" Visibility="Collapsed">Upload failed.</TextBlock>
+                <TextBlock Foreground="Red" x:Name="errorMsgTextBlock" Visibility="Collapsed">Upload failed.</TextBlock>
             </StackPanel>
         </Border>
 

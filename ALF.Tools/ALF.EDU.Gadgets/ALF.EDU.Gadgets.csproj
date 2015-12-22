@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{4DAD2550-FB8A-41E0-8CDA-A7E4B52B46F1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ALF.EduDataLauncher</RootNamespace>
-    <AssemblyName>ALF.EduDataLauncher</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>ALF.EDU.Gadgets</RootNamespace>
+    <AssemblyName>ALF.EDU.Gadgets</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,13 +33,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ALF.SYSTEM, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ALF.EDU">
+      <HintPath>..\..\..\ALF_DLL\ALF.EDU\bin\Debug\ALF.EDU.dll</HintPath>
+    </Reference>
+    <Reference Include="ALF.MSSQL">
+      <HintPath>..\..\..\ALF_DLL\ALF.MSSQL\bin\Debug\ALF.MSSQL.dll</HintPath>
+    </Reference>
+    <Reference Include="ALF.SYSTEM">
       <HintPath>..\..\..\ALF_DLL\ALF.SYSTEM\bin\Debug\ALF.SYSTEM.dll</HintPath>
     </Reference>
     <Reference Include="ALF.UI">
       <HintPath>..\..\..\ALF_DLL\ALF.UI\bin\Debug\ALF.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\..\..\ALF_DLL\ALF.METROUI\bin\Debug\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,6 +71,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EduSubGadget.cs" />
+    <Compile Include="GadegtTools.cs" />
+    <Compile Include="UserControl\CountyInstanceSupply.xaml.cs">
+      <DependentUpon>CountyInstanceSupply.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DataProvinceView.xaml.cs">
+      <DependentUpon>DataProvinceView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +91,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControl\CountyInstanceSupply.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\DataProvinceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -101,6 +127,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
