@@ -12,7 +12,8 @@
         <WrapPanel Grid.Row="0">
             <titleControl:Text Title="服务器链接" x:Name="ipText" Value=".\sqlexpress"/>
             <titleControl:Text Title="服务器密码" x:Name="pwText" Value="abc123,"/>
-            <Button Width="290" Height="30" Margin="5" Content="开始运行" Click="ButtonBase_OnClick"/>
+            <Button Width="290" Height="30" Margin="5" Content="补充县基表" Click="ButtonBase_OnClick"/>
+            <Button Width="290" Height="30" Margin="5" Content="重复实例数据清除" Click="DoubleButton_OnClick"/>
             <Button Width="290" Height="30" Margin="5" Content="返回" Click="QuitButton_OnClick"/>
         </WrapPanel>
         <TextBox Grid.Row="1" Margin="5" IsReadOnly="True" x:Name="infoText"/>
