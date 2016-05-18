@@ -6,7 +6,7 @@
              Width="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="120"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0">
@@ -14,6 +14,7 @@
             <titleControl:Text Title="服务器密码" x:Name="pwText" Value="abc123,"/>
             <Button Width="290" Height="30" Margin="5" Content="补充县基表" Click="ButtonBase_OnClick"/>
             <Button Width="290" Height="30" Margin="5" Content="重复实例数据清除" Click="DoubleButton_OnClick"/>
+            <Button Width="290" Height="30" Margin="5" Content="补充学校数据" Click="SchoolDataButton_OnClick"/>
             <Button Width="290" Height="30" Margin="5" Content="返回" Click="QuitButton_OnClick"/>
         </WrapPanel>
         <TextBox Grid.Row="1" Margin="5" IsReadOnly="True" x:Name="infoText"/>

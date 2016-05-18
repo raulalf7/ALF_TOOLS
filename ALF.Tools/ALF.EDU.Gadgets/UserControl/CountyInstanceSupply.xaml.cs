@@ -171,5 +171,48 @@ namespace ALF.EDU.Gadgets.UserControl
         {
             return await Task.Run(() => Tools.ExecSql(sql));
         }
+
+        private async void SchoolDataButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var tmp = GadegtTools.CheckConn(ipText.Value, pwText.Value);
+            if (tmp != "")
+            {
+                infoText.Text += tmp + "\n";
+                MessageBox.Show(tmp);
+                return;
+            }
+
+            var messageboxResult = MessageBox.Show(@"请确保数据库中已有缺少数据的学校信息表CheckResult！ 如果没有请取消", "", MessageBoxButton.OKCancel);
+            if (messageboxResult != MessageBoxResult.OK)
+            {
+                return;
+            }
+
+            var query = @"select a.*,b.businessID,c.templateName,c.templateNoDisplay,c.templateGroup from  eduData2015DB..checkResultLackTable a, eduData2015DB..schoolBusinessRelation b,edudata2015DB..excelTemplatetable c 
+                          where a.organizationNo=b.organizationNo and a.businessTypeNo=b.businessTypeNo and a.templateNo=c.TemplateNo";
+
+            var data = Tools.GetSqlDataView(query, out tmp);
+            if (tmp != "")
+            {
+                infoText.Text += string.Format("{0}\n", tmp);
+                return;
+            }
+            var count = 0;
+            foreach (DataRow row in data.Table.Rows)
+            {
+                await GenerateSchoolData(row["templateGroup"].ToString(), row["organizationNo"].ToString(), row["businessTypeNo"].ToString(), row["templateNo"].ToString(), row["templateName"].ToString(), row["templateNoDisplay"].ToString(), row["businessID"].ToString());
+                count++;
+                if (count % 100 != 0) continue;
+                infoText.Text += string.Format("已补充{0}条\n", count);
+            }
+            infoText.Text += string.Format("补充完成，已补充{0}条\n", count);
+        }
+
+
+        private async Task<string> GenerateSchoolData(string templateGroup, string organizationNo, string businessTypeNo, string templateNo, string templateName, string templateNoDisplay, string businessID)
+        {
+            return await Task.Run(() => GadegtTools.GenerateInstanceData(templateGroup,organizationNo,businessTypeNo,templateNo,templateName,templateNoDisplay,businessID));
+        }
+
     }
 }
