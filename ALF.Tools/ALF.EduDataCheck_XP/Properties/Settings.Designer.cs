@@ -36,10 +36,10 @@ namespace DataCheck_XP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=eduData2015DB;Integrated Security=True")]
-        public string eduData2015DBConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=eduData2016DB;Integrated Security=True")]
+        public string eduData2016DBConnectionString {
             get {
-                return ((string)(this["eduData2015DBConnectionString"]));
+                return ((string)(this["eduData2016DBConnectionString"]));
             }
         }
     }

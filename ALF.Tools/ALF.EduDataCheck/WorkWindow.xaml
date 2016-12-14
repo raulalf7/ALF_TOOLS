@@ -8,7 +8,7 @@
                       ResizeMode="CanMinimize"
                       WindowStartupLocation="CenterScreen"
                       Height="680" Width="810"
-                      Title="2015年教育事业统计核查工具正式版(高等教育)V4.4">
+                      Title="2016年教育事业统计核查工具正式版(高等教育)V4.4">
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button Click="ButtonBase_OnClick">

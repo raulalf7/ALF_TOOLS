@@ -11,7 +11,7 @@ namespace DataCheck_XP
 {
     public static class Tools
     {
-        public static int RecordYear = 2015;
+        public static int RecordYear = 2016;
 
         private static string _tmpResult;
 
