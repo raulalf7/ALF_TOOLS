@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DBFConverter", "ALF.DBFConverter\ALF.DBFConverter.csproj", "{B9CA2A65-6AEE-4D8B-9F4F-5CF2E6B59F67}"
 EndProject
@@ -19,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.SL.UploadWeb.Web", "ALF.SL.UploadWeb.Web\ALF.SL.UploadWeb.Web.csproj", "{E49AEDA6-B8F9-47A5-81B9-9C596D0DBB9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.EDU.Gadgets", "ALF.EDU.Gadgets\ALF.EDU.Gadgets.csproj", "{4DAD2550-FB8A-41E0-8CDA-A7E4B52B46F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyTools", "DailyTools\DailyTools.csproj", "{3536C3B9-F816-47A3-B725-EA4C4B3AA8B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{4DAD2550-FB8A-41E0-8CDA-A7E4B52B46F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DAD2550-FB8A-41E0-8CDA-A7E4B52B46F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DAD2550-FB8A-41E0-8CDA-A7E4B52B46F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3536C3B9-F816-47A3-B725-EA4C4B3AA8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3536C3B9-F816-47A3-B725-EA4C4B3AA8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3536C3B9-F816-47A3-B725-EA4C4B3AA8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3536C3B9-F816-47A3-B725-EA4C4B3AA8B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
