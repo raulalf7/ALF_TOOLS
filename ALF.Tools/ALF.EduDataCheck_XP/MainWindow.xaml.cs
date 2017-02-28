@@ -5,7 +5,7 @@ using System.Windows;
 using ALF.MSSQL.DataModel;
 using ALF.SYSTEM.DataModel;
 
-namespace DataCheck_XP
+namespace DataReport_XP
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑

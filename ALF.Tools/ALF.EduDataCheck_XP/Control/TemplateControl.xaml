@@ -1,6 +1,6 @@
-﻿<UserControl x:Class="DataCheck_XP.Control.TemplateControl"
+﻿<UserControl x:Class="DataReport_XP.Control.TemplateControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:myControl="clr-namespace:DataCheck_XP.Info"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:myControl="clr-namespace:DataReport_XP.Info"
              Height="600">
     <Grid>
         <Grid.RowDefinitions>

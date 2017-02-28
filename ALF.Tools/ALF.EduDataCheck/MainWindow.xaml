@@ -1,4 +1,4 @@
-﻿<controls:MetroWindow x:Class="DataCheck.MainWindow"
+﻿<controls:MetroWindow x:Class="DataReport.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                      
                       GlowBrush="{DynamicResource AccentColorBrush}"
@@ -20,7 +20,7 @@
                     </Rectangle>
                     <TextBlock Margin="5"
                                VerticalAlignment="Center"
-                               Text="V4.4" />
+                               Name="verText"/>
                 </StackPanel>
             </Button>
         </controls:WindowCommands>

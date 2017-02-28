@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using DataCheck_XP;
+using DataReport_XP;
+using System.Linq;
 
-namespace DataCheck
+namespace DataReport
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -18,6 +19,13 @@ namespace DataCheck
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (Tools.KeyInfoList == null)
+            {
+                return;
+            }
+            this.Title = Tools.KeyInfoList.Single(p => p.Key == "SystemName").Value;
+            verText.Text = Tools.Ver;
+
             serverNameCombo.ItemsSource = new List<object>
                 {
                    ALF.MSSQL.DataModel.DataBaseEngineType.MsSqlServer,

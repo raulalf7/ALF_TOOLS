@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DataCheck_XP.Info.TemplateInfoControl"
+﻿<UserControl x:Class="DataReport_XP.Info.TemplateInfoControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid x:Name="mainGrid">

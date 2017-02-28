@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ALF.EDU;
 using ALF.EDU.DataModel;
 
-namespace DataCheck_XP.Control
+namespace DataReport_XP.Control
 {
     /// <summary>
     /// TemplateControl.xaml 的交互逻辑

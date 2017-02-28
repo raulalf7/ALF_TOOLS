@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DataCheck.Info.ArgInfoControl"
+﻿<UserControl x:Class="DataReport.Info.ArgInfoControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:titleControl="clr-namespace:ALF.METROUI.TitleControl;assembly=ALF.METROUI"

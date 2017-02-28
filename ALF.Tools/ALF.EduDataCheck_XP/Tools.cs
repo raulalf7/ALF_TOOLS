@@ -7,17 +7,38 @@ using ALF.EDU;
 using ALF.EDU.DataModel;
 using ALF.SYSTEM;
 
-namespace DataCheck_XP
+namespace DataReport_XP
 {
     public static class Tools
     {
         public static int RecordYear = 2016;
 
+        public static string Ver = "5.1";
+
         private static string _tmpResult;
 
         public static string TemplateConfigPath = @".\templateConfigFile.xml";
 
+        public static string SystemConfigPath = @".\systemConfigFile.xml";
+
         public static string ArgConfigPath = @".\argConfigFile.xml";
+
+        public static List<KeyInfo> KeyInfoList
+        {
+            get
+            {
+                string result;
+                var tmp =
+                    WindowsTools.XmlDeseerializer(typeof(List<KeyInfo>), SystemConfigPath, out result) as
+                        List<KeyInfo>;
+                if (result != "")
+                {
+                    ShowError(200);
+                    return null;
+                }
+                return tmp;
+            }
+        }
 
         public static List<WordInfo> CreateReportFile(List<TemplateInfo> templateInfoList,
             List<return_getRegionTreeNodeList> regionList, int appType, out string result)
@@ -68,6 +89,14 @@ namespace DataCheck_XP
                 }
             }
             return resultList;
+        }
+
+        
+        public static List<KeyInfo> GetKeyInfoList(out string result)
+        {
+            return
+                WindowsTools.XmlDeseerializer(typeof(List<KeyInfo>), SystemConfigPath, out result) as
+                    List<KeyInfo>;
         }
 
         public static List<ArgInfo> GetArgInfoList(TemplateInfo templateInfo, out string result)
@@ -216,5 +245,27 @@ namespace DataCheck_XP
             }
             MessageBox.Show(msg);
         }
+    }
+
+    public class KeyInfo
+    {
+        public string Key
+        {
+            get
+            { return _key; }
+            set
+            { _key = value; }
+        }
+
+        public string Value
+        {
+            get
+            { return _value; }
+            set
+            { _value = value; }
+        }
+
+        private string _key;
+        private string _value;
     }
 }

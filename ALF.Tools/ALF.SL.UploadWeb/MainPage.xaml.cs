@@ -85,7 +85,7 @@ namespace ALF.SL.UploadWeb
                 foreach (var file in _files)
                 {
 
-                    if (!file.IsDeleted && file.State == Enum.UploadStates.Pending)
+                    if (!file.IsDeleted && file.State == Enum.UploadStates.等待上传)
                     {
                         //var fileUploader = new UploadTools(file, "http://192.168.0.209/SilverlightUploadService.svc");
                         var fileUploader = new UploadTools(file, "http://172.21.28.50/Upload/SilverlightUploadService.svc");

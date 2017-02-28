@@ -7,7 +7,7 @@ using System.Windows.Media;
 using ALF.EDU;
 using ALF.EDU.DataModel;
 
-namespace DataCheck_XP.Info
+namespace DataReport_XP.Info
 {
     /// <summary>
     /// TemplateInfoControl.xaml 的交互逻辑

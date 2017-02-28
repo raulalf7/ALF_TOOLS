@@ -7,8 +7,8 @@
     <ProjectGuid>{DB635A2D-A0C2-40D5-9A08-46FB735181EC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataCheck</RootNamespace>
-    <AssemblyName>DataCheck</AssemblyName>
+    <RootNamespace>DataReport</RootNamespace>
+    <AssemblyName>DataReport</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -195,9 +195,9 @@
     <Resource Include="SkyCirclePencil.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ALF.EduDataCheck_XP\ALF.DataCheck_XP.csproj">
+    <ProjectReference Include="..\ALF.EduDataCheck_XP\ALF.DataReport_XP.csproj">
       <Project>{3b6c58c0-b88a-42ae-9ddb-2485e3a8175f}</Project>
-      <Name>ALF.DataCheck_XP</Name>
+      <Name>ALF.DataReport_XP</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

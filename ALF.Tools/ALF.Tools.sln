@@ -5,9 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DBFConverter", "ALF.DBFConverter\ALF.DBFConverter.csproj", "{B9CA2A65-6AEE-4D8B-9F4F-5CF2E6B59F67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataCheck", "ALF.EduDataCheck\ALF.DataCheck.csproj", "{DB635A2D-A0C2-40D5-9A08-46FB735181EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataReport", "ALF.EduDataCheck\ALF.DataReport.csproj", "{DB635A2D-A0C2-40D5-9A08-46FB735181EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataCheck_XP", "ALF.EduDataCheck_XP\ALF.DataCheck_XP.csproj", "{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.DataReport_XP", "ALF.EduDataCheck_XP\ALF.DataReport_XP.csproj", "{3B6C58C0-B88A-42AE-9DDB-2485E3A8175F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALF.EduDataLauncher", "ALF.EduDataLauncher\ALF.EduDataLauncher.csproj", "{5A76F7BF-3E86-4B9B-82E0-259E3982C02A}"
 EndProject

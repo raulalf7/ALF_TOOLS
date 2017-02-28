@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Input;
 using ALF.EDU.DataModel;
 using ALF.METROUI.EduUI;
-using DataCheck_XP;
+using DataReport_XP;
 
-namespace DataCheck.Control
+namespace DataReport.Control
 {
     /// <summary>
     /// fillReportWindow.xaml 的交互逻辑
@@ -47,10 +47,7 @@ namespace DataCheck.Control
                     return;
                 }
                 WorkWindow.ShowInfo("生成完成","报告生成完成");
-                if (CreateAction != null)
-                {
-                    CreateAction();
-                }
+                CreateAction?.Invoke();
             };
         }
 

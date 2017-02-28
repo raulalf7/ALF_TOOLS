@@ -4,7 +4,7 @@ using ALF.EDU.DataModel;
 using ALF.UI.TitleControl;
 using Label = System.Windows.Forms.Label;
 
-namespace DataCheck_XP.Info
+namespace DataReport_XP.Info
 {
     /// <summary>
     /// ArgInfoControl.xaml 的交互逻辑

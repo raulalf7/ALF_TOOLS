@@ -5,10 +5,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ALF.EDU.DataModel;
-using DataCheck_XP;
+using DataReport_XP;
 using MahApps.Metro.Controls;
 
-namespace DataCheck.Info
+namespace DataReport.Info
 {
     /// <summary>
     /// TemplateInfoControl.xaml 的交互逻辑
@@ -95,7 +95,7 @@ namespace DataCheck.Info
                 return;
             }
 
-            DataCheckTools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
+            DataReportTools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
             //Tools.updateArgConfig(_argInfoList);
         }
 

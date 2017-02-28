@@ -11,10 +11,10 @@ using System.Windows.Forms;
 using ALF.EDU;
 using ALF.EDU.DataModel;
 using ALF.SYSTEM;
-using DataCheck_XP;
+using DataReport_XP;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace DataCheck.Control
+namespace DataReport.Control
 {
     /// <summary>
     ///     TemplateControl.xaml 的交互逻辑
@@ -82,10 +82,7 @@ namespace DataCheck.Control
                 (from object selectedItem in fileInfoListBox.SelectedItems select selectedItem as TemplateInfo).ToList();
 
 
-            if (SelectAction != null)
-            {
-                SelectAction(list);
-            }
+            SelectAction?.Invoke(list);
         }
 
         private void uploadButton_Click(object sender, EventArgs e)

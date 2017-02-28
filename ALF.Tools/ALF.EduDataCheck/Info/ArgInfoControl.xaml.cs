@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using ALF.EDU.DataModel;
-using DataCheck_XP;
+using DataReport_XP;
 
-namespace DataCheck.Info
+namespace DataReport.Info
 {
     /// <summary>
     /// ArgInfoControl.xaml 的交互逻辑

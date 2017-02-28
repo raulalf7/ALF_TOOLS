@@ -8,7 +8,7 @@ using System.Windows.Input;
 using ALF.EDU.DataModel;
 using ALF.UI.EduUI;
 
-namespace DataCheck_XP.Control
+namespace DataReport_XP.Control
 {
     /// <summary>
     /// fillReportWindow.xaml 的交互逻辑
