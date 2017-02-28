@@ -128,14 +128,20 @@ namespace DataReport.Control
                     updatetime = DateTime.Now,
                     rowid = Guid.NewGuid()
                 };
-                var argListTmpe = ReportOfficeTools.GetArgInfoListFromWord(_templateInfo, out _tmpResult);
+                var argListTmp = ReportOfficeTools.GetArgInfoListFromWord(_templateInfo, out _tmpResult);
+                if (argListTmp.Count == 0)
+                {
+                    WorkWindow.ShowError("模板文件中没有配置参数");
+                    WorkWindow.Cover.Visibility = Visibility.Collapsed;
+                    return;
+                }
                 if (_tmpResult != "")
                 {
                     WorkWindow.ShowError(_tmpResult);
                 }
                 else
                 {
-                    _tmpResult = Tools.UpdateArgConfig(argListTmpe);
+                    _tmpResult = Tools.UpdateArgConfig(argListTmp);
                     if (_tmpResult == "")
                     {
                         _templateInfo.templatePath = string.Format(@".\templateFiles\{0}", _file.Name);

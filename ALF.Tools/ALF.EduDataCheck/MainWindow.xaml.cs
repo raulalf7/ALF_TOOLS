@@ -23,7 +23,8 @@ namespace DataReport
             {
                 return;
             }
-            this.Title = Tools.KeyInfoList.Single(p => p.Key == "SystemName").Value;
+            Tools.Title = Tools.KeyInfoList.Single(p => p.Key == "SystemName").Value;
+            Title = Tools.Title;
             verText.Text = Tools.Ver;
 
             serverNameCombo.ItemsSource = new List<object>

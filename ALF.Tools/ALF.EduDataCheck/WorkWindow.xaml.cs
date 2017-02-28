@@ -23,6 +23,8 @@ namespace DataReport
 
         public void Load(int index)
         {
+            Title = Tools.Title;
+            verText.Text = Tools.Ver;
             Cover = coverGrid;
             Window = this;
 

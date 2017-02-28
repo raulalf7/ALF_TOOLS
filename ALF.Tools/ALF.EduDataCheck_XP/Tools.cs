@@ -14,6 +14,7 @@ namespace DataReport_XP
         public static int RecordYear = 2016;
 
         public static string Ver = "5.1";
+        public static string Title = "";
 
         private static string _tmpResult;
 
