@@ -19,10 +19,11 @@ namespace DataReport_XP
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Tools.Initial();
             serverNameCombo.ItemsSource = new List<object>
                 {
-                   ALF.MSSQL.DataModel.DataBaseEngineType.MsSqlServer,
-                   ALF.MSSQL.DataModel.DataBaseEngineType.SqlExpress,
+                   DataBaseEngineType.MsSqlServer,
+                   DataBaseEngineType.SqlExpress,
                    "ServerData"
                 };
             serverNameCombo.SelectedIndex = 0;
@@ -56,7 +57,6 @@ namespace DataReport_XP
                 return;
             }
 
-            ALF.EDU.EduTools.RecordYear = Tools.RecordYear.ToString();
             ALF.MSSQL.Tools.DBName = ALF.EDU.EduTools.EduDBName;
             var windos = new WorkWindow();
             windos.Load(typeCombo.SelectedIndex);

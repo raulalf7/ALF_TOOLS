@@ -11,9 +11,9 @@ namespace DataReport_XP
 {
     public static class Tools
     {
-        public static int RecordYear = 2016;
 
-        public static string Ver = "5.1";
+        public static string Ver = "5.3";
+
         public static string Title = "";
 
         private static string _tmpResult;
@@ -23,6 +23,12 @@ namespace DataReport_XP
         public static string SystemConfigPath = @".\systemConfigFile.xml";
 
         public static string ArgConfigPath = @".\argConfigFile.xml";
+
+        public static void Initial()
+        {
+            Title = KeyInfoList.Single(p => p.Key == "SystemName").Value;
+            EduTools.RecordYear = KeyInfoList.Single(p => p.Key == "RecordYear").Value;
+        }
 
         public static List<KeyInfo> KeyInfoList
         {
@@ -172,77 +178,61 @@ namespace DataReport_XP
         }
 
 
-        public static void ShowError(int errorCode, string errorContent = "")
+        public static void ShowError(int errorCode=0, string errorContent = "")
         {
             var msg = "发生错误";
-            if (errorCode <= 203)
+            switch (errorCode)
             {
-                switch (errorCode)
-                {
-                    case 101:
+                case 101:
                     {
                         msg = "数据库服务没有开启";
                         break;
                     }
-                    case 102:
+                case 102:
                     {
                         msg = "数据库没有挂载";
                         break;
                     }
-                    case 103:
+                case 103:
                     {
                         msg = "数据库中没有区划表";
                         break;
                     }
-                    default:
+                case 200:
                     {
-                        switch (errorCode)
-                        {
-                            case 200:
-                            {
-                                msg = "缺少配置文件";
-                                break;
-                            }
-                            case 201:
-                            {
-                                msg = "文档中没有占位参数";
-                                break;
-                            }
-                            case 202:
-                            {
-                                msg = "分析文档参数错误：" + errorContent;
-                                break;
-                            }
-                            case 203:
-                            {
-                                msg = "SQL参数查询参数错误：" + errorContent;
-                                break;
-                            }
-                        }
+                        msg = "缺少配置文件";
                         break;
                     }
-                }
-            }
-            else
-            {
-                if (errorCode != 302)
-                {
-                    if (errorCode != 401)
+                case 201:
                     {
-                        if (errorCode == 999)
-                        {
-                            msg = errorContent;
-                        }
+                        msg = "文档中没有占位参数";
+                        break;
                     }
-                    else
+                case 202:
+                    {
+                        msg = "分析文档参数错误：" + errorContent;
+                        break;
+                    }
+                case 203:
+                    {
+                        msg = "SQL参数查询参数错误：" + errorContent;
+                        break;
+                    }
+                case 302:
+                    {
+                        msg = "文档更新错误：" + errorContent;
+                        break;
+                    }
+                case 401:
                     {
                         msg = "数据类型错误：" + errorContent;
+                        break;
                     }
-                }
-                else
-                {
-                    msg = "文档更新错误：" + errorContent;
-                }
+                default:
+                    {
+                        msg = errorContent;
+                        break;
+                    }
             }
             MessageBox.Show(msg);
         }

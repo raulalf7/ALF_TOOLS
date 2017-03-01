@@ -58,7 +58,7 @@ namespace DataReport.Control
 
         private void IntialRegionTree()
         {
-            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType,Tools.RecordYear, ALF.MSSQL.Tools.DBName) { AppType = 1 };
+            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType, int.Parse(ALF.EDU.EduTools.RecordYear), ALF.MSSQL.Tools.DBName) { AppType = 1 };
             contentControl.Content = _regionTreeControl;
         }
 

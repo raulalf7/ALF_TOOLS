@@ -19,11 +19,7 @@ namespace DataReport
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Tools.KeyInfoList == null)
-            {
-                return;
-            }
-            Tools.Title = Tools.KeyInfoList.Single(p => p.Key == "SystemName").Value;
+            Tools.Initial();
             Title = Tools.Title;
             verText.Text = Tools.Ver;
 
@@ -62,7 +58,7 @@ namespace DataReport
                 Tools.ShowError(200);
                 return;
             }
-            ALF.EDU.EduTools.RecordYear = Tools.RecordYear.ToString();
+            ALF.EDU.EduTools.RecordYear = "2016";
             ALF.MSSQL.Tools.DBName = ALF.EDU.EduTools.EduDBName;
             var windos = new WorkWindow();
             windos.Load(typeCombo.SelectedIndex);
