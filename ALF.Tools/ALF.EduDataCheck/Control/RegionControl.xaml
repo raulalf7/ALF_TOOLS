@@ -32,9 +32,15 @@
             <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="5" x:Name="contentControl"/>
             <ListBox x:Name="selectedRegion" Background="Transparent" Grid.Row="1" Grid.Column="3" Margin="5" SelectionMode="Single" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"  ItemTemplate="{DynamicResource RegionListTemplate}" MouseDoubleClick="selectedRegion_MouseDoubleClick" ItemsSource="{Binding   Path=., Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
             <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
-                <metroui:ImageButton Click="addButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ImageName="appbar_add" ButtonStyle="MetroCircleButtonStyle" ImageStretch="None"  ImageTextVisibility="Collapsed"/>
-                <TextBlock Height="50"/>
-                <metroui:ImageButton Click="removeButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ImageName="appbar_minus" ButtonStyle="MetroCircleButtonStyle" ImageStretch="None"  ImageTextVisibility="Collapsed"/>              
+                <metroui:ImageButton Click="addButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ToolTip="添加" ImageName="appbar_chevron_right" ButtonStyle="MetroCircleButtonStyle" ImageStretch="Fill"  ImageTextVisibility="Collapsed"/>
+                <TextBlock Height="20"/>
+                <metroui:ImageButton Click="removeButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ToolTip="删除" ImageName="appbar_chevron_left" ButtonStyle="MetroCircleButtonStyle" ImageStretch="Fill"  ImageTextVisibility="Collapsed"/>
+                <TextBlock Height="20"/>
+                <metroui:ImageButton Click="addAllButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ToolTip="全部添加" ImageName="appbar_list_check" ButtonStyle="MetroCircleButtonStyle" ImageStretch="Fill" ImageTextVisibility="Collapsed"/>
+                <TextBlock Height="20"/>
+                <metroui:ImageButton Click="removeAllButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ToolTip="全部删除" ImageName="appbar_list_delete_inline" ButtonStyle="MetroCircleButtonStyle" ImageStretch="Fill"  ImageTextVisibility="Collapsed"/>
+                <TextBlock Height="20"/>
+                <metroui:ImageButton Click="AddNationButton_Click" ImageSize="20" ButtonSize="50" Margin="5" ToolTip="添加全国" ImageName="appbar_places" ButtonStyle="MetroCircleButtonStyle" ImageStretch="Fill"  ImageTextVisibility="Collapsed"/>
             </StackPanel>
         </Grid>
     </Grid>

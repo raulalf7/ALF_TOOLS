@@ -12,7 +12,7 @@ namespace DataReport_XP
     public static class Tools
     {
 
-        public static string Ver = "5.3";
+        public static string Ver = "5.5";
 
         public static string Title = "";
 
@@ -77,8 +77,8 @@ namespace DataReport_XP
                         return resultList;
                     }
 
-                    var destFilePath = string.Format(@"{0}\reportFiles\{1}_{2}_{3}", Environment.CurrentDirectory,
-                        wordInfo.regionPath, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), itemFile.templateName);
+                    var destFilePath = string.Format(@"{0}\reportFiles\{4}_{1}_{2}_{3}", Environment.CurrentDirectory,
+                        wordInfo.regionPath, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), itemFile.templateName, itemRegion.nodeNo.Substring(0,6));
                     File.Copy(itemFile.templatePath, destFilePath, true);
 
                     result = ReportOfficeTools.UpdateWord(argInfoList, regionString, appType, destFilePath,false);

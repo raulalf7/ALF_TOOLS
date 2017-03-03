@@ -19,6 +19,8 @@ namespace DataReport
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+
             Tools.Initial();
             Title = Tools.Title;
             verText.Text = Tools.Ver;
@@ -32,6 +34,8 @@ namespace DataReport
 
             typeCombo.ItemsSource = new List<string> {"精简", "高级"};
             typeCombo.SelectedIndex = 0;
+
+
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)

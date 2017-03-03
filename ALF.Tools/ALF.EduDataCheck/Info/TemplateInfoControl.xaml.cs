@@ -184,17 +184,21 @@ namespace DataReport.Info
         {
             string result;
             var dv = ALF.MSSQL.Tools.GetSqlDataView(string.Format("select * from checkArgInfo where templateName='{0}'", _argInfoList[0].templateName), out result);
-            if (result != "" || dv.Table.Rows.Count != _argInfoList.Count)
+            if (result != "" )
             {
-                Tools.ShowError(0, "数据库中没有找到【ArgInfo】数据表或者与当前模板匹配的参数数据");
+                Tools.ShowError(0, string.Format("查询失败:【{0}】",result));
+                return;
+            }
+            if(dv.Table.Rows.Count != _argInfoList.Count)
+            {
+                Tools.ShowError(0, string.Format("参数文件信息与数据库参数数据不匹配，数量分别为【{0}】,【{1}】",_argInfoList.Count, dv.Table.Rows.Count));
                 return;
             }
             foreach (DataRow row in dv.Table.Rows)
             {
                 try
                 {
-                    _argInfoList.Single(p => p.argName == row["argName"].ToString()
-                                           & p.argNo==int.Parse(row["argNo"].ToString())).argDataSql = row["argDataSql"].ToString();
+                    _argInfoList.Single(p => p.argName == row["argName"].ToString()).argDataSql = row["argDataSql"].ToString();
                 }
                 catch
                 {
@@ -203,7 +207,7 @@ namespace DataReport.Info
             }
             if (result != "")
             {
-                Tools.ShowError(0, "数据库中没有找到【ArgInfo】数据表或者与当前模板匹配的参数数据");
+                Tools.ShowError(0, result);
                 return;
             }
 

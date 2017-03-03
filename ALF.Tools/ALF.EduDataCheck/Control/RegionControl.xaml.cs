@@ -90,7 +90,7 @@ namespace DataReport.Control
         {
             var tmp = _regionTreeControl.SelectItem;
 
-            if (_regionList.Count(p => p.nodeNo == tmp.nodeNo) != 0)
+            if (tmp==null || _regionList.Count(p => p.nodeNo == tmp.nodeNo) != 0)
             {
                 return;
             }
@@ -100,6 +100,27 @@ namespace DataReport.Control
         private void removeButton_Click(object sender, EventArgs e)
         {
             selectedRegion_MouseDoubleClick(null, null);
+        }
+
+        private void addAllButton_Click(object sender, EventArgs e)
+        {
+            _regionList.Clear();
+            foreach (var item in _regionTreeControl.ItemSourceList)
+            {
+                _regionList.Add(item);
+            }
+        }
+
+        private void removeAllButton_Click(object sender, EventArgs e)
+        {
+            _regionList.Clear();
+        }
+
+        private void AddNationButton_Click(object sender, EventArgs e)
+        {
+            _regionList.Add(new return_getRegionTreeNodeList
+            { nodeNo="360000", nodeName="全国", nodeLevel=0
+            });
         }
     }
 
