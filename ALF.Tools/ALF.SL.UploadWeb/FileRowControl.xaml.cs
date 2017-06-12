@@ -36,14 +36,14 @@ namespace ALF.SL.UploadWeb
         {
             if (e.PropertyName != "State") return;
             //当前文件上传完毕后显示灰字
-            if (UserFile.State == Enum.UploadStates.Finished)
+            if (UserFile.State == Enum.UploadStates.上传完成)
             {
                 GreyOutText();
                 ShowValidIcon();
             }
 
             //如上传失败显示错误信息
-            if (UserFile.State == Enum.UploadStates.Error)
+            if (UserFile.State == Enum.UploadStates.错误)
             {
                 errorMsgTextBlock.Visibility = Visibility.Visible;
             }

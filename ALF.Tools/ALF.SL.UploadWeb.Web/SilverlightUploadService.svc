@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="ALF.SL.UploadWeb.Web.SilverlightUploadService" CodeBehind="SilverlightUploadService.svc.cs" %>

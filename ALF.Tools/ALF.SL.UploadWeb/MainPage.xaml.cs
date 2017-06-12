@@ -18,7 +18,6 @@ namespace ALF.SL.UploadWeb
             _fileFilter = fileFilter;
             InitializeComponent();
 
-
             _files = new UploadFileCollection();
             fileList.ItemsSource = _files;
             filesCount.DataContext = _files;
@@ -52,8 +51,9 @@ namespace ALF.SL.UploadWeb
             {
                 var userFile = new UploadFile
                 {
-                    FileName = file.Name,
-                    FileStream = file.OpenRead()
+                    FilePhysicalName =  "cccc"+file.Name,
+                    FileStream = file.OpenRead(),
+                   // FilelName=file.Name
                 };
 
 
@@ -85,10 +85,10 @@ namespace ALF.SL.UploadWeb
                 foreach (var file in _files)
                 {
 
-                    if (!file.IsDeleted && file.State == Enum.UploadStates.Pending)
+                    if (!file.IsDeleted && file.State == Enum.UploadStates.等待上传)
                     {
-                        //var fileUploader = new UploadTools(file, "http://192.168.0.209/SilverlightUploadService.svc");
-                        var fileUploader = new UploadTools(file, "http://172.21.28.50/Upload/SilverlightUploadService.svc");
+                        var fileUploader = new UploadTools(file, "http://localhost:56696/SilverlightUploadService.svc");
+                        //var fileUploader = new UploadTools(file, "http://172.21.28.50/Upload/SilverlightUploadService.svc");
                         fileUploader.UploadAdvanced();
                     }
                 }

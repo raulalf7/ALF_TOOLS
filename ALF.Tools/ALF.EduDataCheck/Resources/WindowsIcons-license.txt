@@ -37,7 +37,7 @@ http://creativecommons.org/licenses/by-nd/3.0/ *
   - appbar.currency.rubles
   - appbar.currency.grivna
 - Massimo Savazzi (@msavazzi)
-  - List of missing exported icons
+  - List of _mis exported icons
 - Proletkult Graphik, from The Noun Project
   - appbar.draw.pen (inspired)
 - Olivier Guin, from The Noun Project
