@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-namespace DataCheck_XP.Control
+namespace DataReport_XP.Control
 {
     /// <summary>
     /// WordControl.xaml 的交互逻辑

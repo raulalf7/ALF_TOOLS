@@ -1,12 +1,12 @@
 ﻿using System.Windows;
 using ALF.EDU.DataModel;
-using DataCheck.Info;
-using DataCheck_XP;
+using DataReport.Info;
+using DataReport_XP;
 using MahApps.Metro.Controls;
 
-namespace DataCheck
+namespace DataReport
 {
-    public class DataCheckTools
+    public class DataReportTools
     {
         public static void ShowArgInfoControl(ArgInfo argInfo, TemplateInfoControl templateInfoControl, TemplateInfo templateInfo)
         {

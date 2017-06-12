@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="DailyTools.Controls.RenameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DailyTools.Controls">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Margin="3" Grid.Column="0" Content="Chose Folder" Click="FolderButton_Click"/>
+            <Button Grid.Row="0" Margin="3" Grid.Column="1" Content="Start Rename" Click="RenameButton_Click"/>
+        </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Margin="3" Text="选择模式"/>
+            <RadioButton Content="默认" GroupName="mode" VerticalAlignment="Center" Margin="3"/>
+        </StackPanel>
+        <TextBox Grid.Row="2" Margin="3" IsReadOnly="True" AcceptsReturn="True" x:Name="infoText" Background="Transparent"/>
+
+    </Grid>
+</UserControl>

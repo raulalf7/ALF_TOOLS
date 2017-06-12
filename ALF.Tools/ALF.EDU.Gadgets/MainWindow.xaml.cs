@@ -22,13 +22,8 @@ namespace ALF.EDU.Gadgets
             switch (btn.Content.ToString())
             {
                 case "补充县基表实例和数据":
-                    var obj1 =new CountyInstanceSupply();
+                    var obj1 = new CountyInstanceSupply();
                     mainContent.Content = obj1;
-                    mainContent.Visibility = Visibility.Visible;
-                    break;
-                case "分省过录":
-                    var obj2 = new DataProvinceView();
-                    mainContent.Content = obj2;
                     mainContent.Visibility = Visibility.Visible;
                     break;
             }

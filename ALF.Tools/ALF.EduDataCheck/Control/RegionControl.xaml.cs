@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Input;
 using ALF.EDU.DataModel;
 using ALF.METROUI.EduUI;
-using DataCheck_XP;
+using DataReport_XP;
 
-namespace DataCheck.Control
+namespace DataReport.Control
 {
     /// <summary>
     /// fillReportWindow.xaml 的交互逻辑
@@ -47,10 +47,7 @@ namespace DataCheck.Control
                     return;
                 }
                 WorkWindow.ShowInfo("生成完成","报告生成完成");
-                if (CreateAction != null)
-                {
-                    CreateAction();
-                }
+                CreateAction?.Invoke();
             };
         }
 
@@ -61,7 +58,7 @@ namespace DataCheck.Control
 
         private void IntialRegionTree()
         {
-            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType,Tools.RecordYear, ALF.MSSQL.Tools.DBName) { AppType = 1 };
+            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType, int.Parse(ALF.EDU.EduTools.RecordYear), ALF.MSSQL.Tools.DBName) { AppType = 1 };
             contentControl.Content = _regionTreeControl;
         }
 
@@ -93,7 +90,7 @@ namespace DataCheck.Control
         {
             var tmp = _regionTreeControl.SelectItem;
 
-            if (_regionList.Count(p => p.nodeNo == tmp.nodeNo) != 0)
+            if (tmp==null || _regionList.Count(p => p.nodeNo == tmp.nodeNo) != 0)
             {
                 return;
             }
@@ -103,6 +100,27 @@ namespace DataCheck.Control
         private void removeButton_Click(object sender, EventArgs e)
         {
             selectedRegion_MouseDoubleClick(null, null);
+        }
+
+        private void addAllButton_Click(object sender, EventArgs e)
+        {
+            _regionList.Clear();
+            foreach (var item in _regionTreeControl.ItemSourceList)
+            {
+                _regionList.Add(item);
+            }
+        }
+
+        private void removeAllButton_Click(object sender, EventArgs e)
+        {
+            _regionList.Clear();
+        }
+
+        private void AddNationButton_Click(object sender, EventArgs e)
+        {
+            _regionList.Add(new return_getRegionTreeNodeList
+            { nodeNo="360000", nodeName="全国", nodeLevel=0
+            });
         }
     }
 

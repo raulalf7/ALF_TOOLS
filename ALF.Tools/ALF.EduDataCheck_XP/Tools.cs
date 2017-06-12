@@ -7,17 +7,45 @@ using ALF.EDU;
 using ALF.EDU.DataModel;
 using ALF.SYSTEM;
 
-namespace DataCheck_XP
+namespace DataReport_XP
 {
     public static class Tools
     {
-        public static int RecordYear = 2015;
+
+        public static string Ver = "5.5";
+
+        public static string Title = "";
 
         private static string _tmpResult;
 
         public static string TemplateConfigPath = @".\templateConfigFile.xml";
 
+        public static string SystemConfigPath = @".\systemConfigFile.xml";
+
         public static string ArgConfigPath = @".\argConfigFile.xml";
+
+        public static void Initial()
+        {
+            Title = KeyInfoList.Single(p => p.Key == "SystemName").Value;
+            EduTools.RecordYear = KeyInfoList.Single(p => p.Key == "RecordYear").Value;
+        }
+
+        public static List<KeyInfo> KeyInfoList
+        {
+            get
+            {
+                string result;
+                var tmp =
+                    WindowsTools.XmlDeseerializer(typeof(List<KeyInfo>), SystemConfigPath, out result) as
+                        List<KeyInfo>;
+                if (result != "")
+                {
+                    ShowError(200);
+                    return null;
+                }
+                return tmp;
+            }
+        }
 
         public static List<WordInfo> CreateReportFile(List<TemplateInfo> templateInfoList,
             List<return_getRegionTreeNodeList> regionList, int appType, out string result)
@@ -49,8 +77,8 @@ namespace DataCheck_XP
                         return resultList;
                     }
 
-                    var destFilePath = string.Format(@"{0}\reportFiles\{1}_{2}_{3}", Environment.CurrentDirectory,
-                        wordInfo.regionPath, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), itemFile.templateName);
+                    var destFilePath = string.Format(@"{0}\reportFiles\{4}_{1}_{2}_{3}", Environment.CurrentDirectory,
+                        wordInfo.regionPath, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), itemFile.templateName, itemRegion.nodeNo.Substring(0,6));
                     File.Copy(itemFile.templatePath, destFilePath, true);
 
                     result = ReportOfficeTools.UpdateWord(argInfoList, regionString, appType, destFilePath,false);
@@ -68,6 +96,14 @@ namespace DataCheck_XP
                 }
             }
             return resultList;
+        }
+
+        
+        public static List<KeyInfo> GetKeyInfoList(out string result)
+        {
+            return
+                WindowsTools.XmlDeseerializer(typeof(List<KeyInfo>), SystemConfigPath, out result) as
+                    List<KeyInfo>;
         }
 
         public static List<ArgInfo> GetArgInfoList(TemplateInfo templateInfo, out string result)
@@ -142,79 +178,85 @@ namespace DataCheck_XP
         }
 
 
-        public static void ShowError(int errorCode, string errorContent = "")
+        public static void ShowError(int errorCode=0, string errorContent = "")
         {
             var msg = "发生错误";
-            if (errorCode <= 203)
+            switch (errorCode)
             {
-                switch (errorCode)
-                {
-                    case 101:
+                case 101:
                     {
                         msg = "数据库服务没有开启";
                         break;
                     }
-                    case 102:
+                case 102:
                     {
                         msg = "数据库没有挂载";
                         break;
                     }
-                    case 103:
+                case 103:
                     {
                         msg = "数据库中没有区划表";
                         break;
                     }
-                    default:
+                case 200:
                     {
-                        switch (errorCode)
-                        {
-                            case 200:
-                            {
-                                msg = "缺少配置文件";
-                                break;
-                            }
-                            case 201:
-                            {
-                                msg = "文档中没有占位参数";
-                                break;
-                            }
-                            case 202:
-                            {
-                                msg = "分析文档参数错误：" + errorContent;
-                                break;
-                            }
-                            case 203:
-                            {
-                                msg = "SQL参数查询参数错误：" + errorContent;
-                                break;
-                            }
-                        }
+                        msg = "缺少配置文件";
                         break;
                     }
-                }
-            }
-            else
-            {
-                if (errorCode != 302)
-                {
-                    if (errorCode != 401)
+                case 201:
                     {
-                        if (errorCode == 999)
-                        {
-                            msg = errorContent;
-                        }
+                        msg = "文档中没有占位参数";
+                        break;
                     }
-                    else
+                case 202:
+                    {
+                        msg = "分析文档参数错误：" + errorContent;
+                        break;
+                    }
+                case 203:
+                    {
+                        msg = "SQL参数查询参数错误：" + errorContent;
+                        break;
+                    }
+                case 302:
+                    {
+                        msg = "文档更新错误：" + errorContent;
+                        break;
+                    }
+                case 401:
                     {
                         msg = "数据类型错误：" + errorContent;
+                        break;
                     }
-                }
-                else
-                {
-                    msg = "文档更新错误：" + errorContent;
-                }
+                default:
+                    {
+                        msg = errorContent;
+                        break;
+                    }
             }
             MessageBox.Show(msg);
         }
+    }
+
+    public class KeyInfo
+    {
+        public string Key
+        {
+            get
+            { return _key; }
+            set
+            { _key = value; }
+        }
+
+        public string Value
+        {
+            get
+            { return _value; }
+            set
+            { _value = value; }
+        }
+
+        private string _key;
+        private string _value;
     }
 }

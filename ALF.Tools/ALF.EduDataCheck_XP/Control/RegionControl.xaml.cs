@@ -8,7 +8,7 @@ using System.Windows.Input;
 using ALF.EDU.DataModel;
 using ALF.UI.EduUI;
 
-namespace DataCheck_XP.Control
+namespace DataReport_XP.Control
 {
     /// <summary>
     /// fillReportWindow.xaml 的交互逻辑
@@ -46,10 +46,7 @@ namespace DataCheck_XP.Control
                     return;
                 }
                 WorkWindow.ShowInfo("生成完成","报告生成完成");
-                if (CreateAction != null)
-                {
-                    CreateAction();
-                }
+                CreateAction?.Invoke();
             };
         }
 
@@ -60,7 +57,7 @@ namespace DataCheck_XP.Control
 
         private void IntialRegionTree()
         {
-            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType, Tools.RecordYear, ALF.MSSQL.Tools.DBName) { AppType = 1 };
+            _regionTreeControl = new RegionTreeControl(ALF.MSSQL.Tools.DataBaseType, int.Parse(ALF.EDU.EduTools.RecordYear), ALF.MSSQL.Tools.DBName) { AppType = 1 };
             contentControl.Content = _regionTreeControl;
         }
 

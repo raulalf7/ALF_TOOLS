@@ -5,10 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ALF.EDU.DataModel;
-using DataCheck_XP;
+using DataReport_XP;
 using MahApps.Metro.Controls;
+using System.Data;
+using MahApps.Metro.Controls.Dialogs;
+using System.Threading.Tasks;
 
-namespace DataCheck.Info
+namespace DataReport.Info
 {
     /// <summary>
     /// TemplateInfoControl.xaml 的交互逻辑
@@ -24,6 +27,7 @@ namespace DataCheck.Info
         bool _isEditable;
         List<ArgInfo> _argInfoList;
         private ArgInfo _selectedArgInfo;
+        private Action<Task<MessageDialogResult>> _action;
 
         //public Action SelectAction;
 
@@ -39,6 +43,25 @@ namespace DataCheck.Info
             {
                 argTabControl.SelectedIndex = 0;
             }
+
+            _action = o =>
+            {
+                if (o.Result == MessageDialogResult.Negative)
+                {
+                    return;
+                }
+                try
+                {
+                    foreach (var item in _argInfoList)
+                    {
+                        Tools.UpdateArgConfig(item);
+                    }
+                }
+                catch (Exception e)
+                {
+                    WorkWindow.ShowError(e.Message);
+                }
+            };
 
         }
 
@@ -95,8 +118,7 @@ namespace DataCheck.Info
                 return;
             }
 
-            DataCheckTools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
-            //Tools.updateArgConfig(_argInfoList);
+            DataReportTools.ShowArgInfoControl(_selectedArgInfo, this, mainGrid.DataContext as TemplateInfo);
         }
 
         private void countButton_Click(object sender, EventArgs e)
@@ -148,8 +170,6 @@ namespace DataCheck.Info
         private static void ShowResultWindow(IEnumerable<string> list)
         {
             var listbox = new ListBox {ItemsSource = list, SelectionMode = SelectionMode.Extended};
-
-
             listbox.SelectionChanged += (ss, ee) =>
             {
                 var result = listbox.SelectedItems.Cast<object>().Aggregate("", (current, item) => current + (item.ToString() + "\r\n"));
@@ -158,6 +178,41 @@ namespace DataCheck.Info
             var w = new MetroWindow {Content = listbox , Width = 600, Height = 400,Title = "全部查询个数", EnableDWMDropShadow = true};
             w.Show();
 
+        }
+
+        private void syncButton_Click(object sender, EventArgs e)
+        {
+            string result;
+            var dv = ALF.MSSQL.Tools.GetSqlDataView(string.Format("select * from checkArgInfo where templateName='{0}'", _argInfoList[0].templateName), out result);
+            if (result != "" )
+            {
+                Tools.ShowError(0, string.Format("查询失败:【{0}】",result));
+                return;
+            }
+            if(dv.Table.Rows.Count != _argInfoList.Count)
+            {
+                Tools.ShowError(0, string.Format("参数文件信息与数据库参数数据不匹配，数量分别为【{0}】,【{1}】",_argInfoList.Count, dv.Table.Rows.Count));
+                return;
+            }
+            foreach (DataRow row in dv.Table.Rows)
+            {
+                try
+                {
+                    _argInfoList.Single(p => p.argName == row["argName"].ToString()).argDataSql = row["argDataSql"].ToString();
+                }
+                catch
+                {
+                    result += string.Format("【{0}】缺少对应数据\n", row["argName"]);
+                }
+            }
+            if (result != "")
+            {
+                Tools.ShowError(0, result);
+                return;
+            }
+
+            var test = WorkWindow.showDialog("同步完成", "参数已经同步完成，是否更新本地配置文件？");
+            test.ContinueWith(_action);
         }
     }
 }

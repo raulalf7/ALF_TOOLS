@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using DataCheck_XP;
+using DataReport_XP;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace DataCheck
+namespace DataReport
 {
     /// <summary>
     /// WorkWindow.xaml 的交互逻辑
@@ -23,6 +23,8 @@ namespace DataCheck
 
         public void Load(int index)
         {
+            Title = Tools.Title;
+            verText.Text = Tools.Ver;
             Cover = coverGrid;
             Window = this;
 

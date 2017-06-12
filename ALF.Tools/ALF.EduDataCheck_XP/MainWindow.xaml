@@ -1,11 +1,11 @@
-﻿<Window x:Class="DataCheck_XP.MainWindow"
+﻿<Window x:Class="DataReport_XP.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:titleControl="clr-namespace:ALF.UI.TitleControl;assembly=ALF.UI"
         Loaded="Window_Loaded"
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
-                      Title="2015年教育事业统计核查工具正式版(高等教育)V4.4(XP)" Height="300" Width="400">
+                      Title="2016年教育事业统计核查工具XP版" Height="300" Width="400">
 
     <Grid>
         <Grid.RowDefinitions>

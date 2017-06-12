@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 
 
-namespace DataCheck_XP
+namespace DataReport_XP
 {
     /// <summary>
     /// WorkWindow.xaml 的交互逻辑

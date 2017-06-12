@@ -2,10 +2,10 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using DataCheck_XP;
+using DataReport_XP;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace DataCheck.Control
+namespace DataReport.Control
 {
     /// <summary>
     /// WordControl.xaml 的交互逻辑

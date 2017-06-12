@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace DataCheck_XP
+namespace DataReport_XP
 {
     /// <summary>
     /// App.xaml 的交互逻辑
