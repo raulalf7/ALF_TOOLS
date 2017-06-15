@@ -25,18 +25,22 @@ namespace ALF.DocGen.ContentControl
             valueList.Add("JBCS", JBCS.SelectedItem.ToString());
             valueList.Add("SFFW", SFFW.SelectedItem.ToString());
 
-            var filePath =  Tools.Gen(valueList, 1);
-            Tools.wordApp.Visible = true;
-            Tools.wordApp.Documents.Add(filePath);
-
-            string logInfo = string.Format("\r\n\r\n\r\n制作时间：{0}\r\n", DateTime.Now.ToLongTimeString());
-            foreach (var item in valueList)
+            var filePath =  Tools.Gen(valueList, 1, true);
+            if (filePath == "")
             {
-                logInfo += string.Format("【{0}】:{1}\r\n", item.Key, item.Value);
+                return;
             }
+            Tools.ConvertWordToImage(filePath,valueList, 1);
+            MainWindow.coverGrid.Visibility = Visibility.Collapsed;
 
-            var log = SYSTEM.WindowsTools.ReadFromTxt(Tools.folder + @"\Log.txt", System.Text.Encoding.UTF8);
-            SYSTEM.WindowsTools.WriteToTxt(Tools.folder + @"\Log.txt", log + logInfo, System.Text.Encoding.UTF8);
+            //string logInfo = string.Format("\r\n\r\n\r\n制作时间：{0}\r\n", DateTime.Now.ToLongTimeString());
+            //foreach (var item in valueList)
+            //{
+            //    logInfo += string.Format("【{0}】:{1}\r\n", item.Key, item.Value);
+            //}
+
+            //var log = SYSTEM.WindowsTools.ReadFromTxt(Tools.folder + @"\Log.txt", System.Text.Encoding.UTF8);
+            //SYSTEM.WindowsTools.WriteToTxt(Tools.folder + @"\Log.txt", log + logInfo, System.Text.Encoding.UTF8);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

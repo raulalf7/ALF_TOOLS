@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ALF.DocGen"
         xmlns:titleControl="clr-namespace:ALF.UI.TitleControl;assembly=ALF.UI"
         Width="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
         mc:Ignorable="d"
+        Height="600"
         Title="ALF.DocGen">
     <Grid>
         <!--<Grid.ColumnDefinitions>
@@ -23,6 +23,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="5" x:Name="cover" Background="Black"  Opacity="0.2" Panel.ZIndex="100" Visibility="Collapsed">
+            <TextBlock Text="生成中，请稍后" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  FontSize="30"/>
+        </Grid>
         <Border Grid.Row="1" BorderThickness="0,1,0,1" BorderBrush="Black">
             <WrapPanel>
                 <titleControl:Combo Grid.Row="1"  Title="文档类型" HorizontalAlignment="Left" x:Name="typeCombo"  ValueWidth="290" SelectionChanged="typeCombo_SelectionChanged" />
@@ -31,8 +34,8 @@
         </Border>
         <TextBlock  Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="国际司公文生成工具" FontSize="40" FontWeight="Bold"/>
 
-            <ContentControl Grid.Row="2"  x:Name="content" >
-            </ContentControl>
+        <ContentControl Grid.Row="2"  x:Name="content" >
+        </ContentControl>
         <Border BorderThickness="0,1,0,1" BorderBrush="Black" Grid.Row="3" >
             <Button Margin="5" Content="生成文档" x:Name="GenButton" Visibility="Collapsed" Click="GenButton_Click"/>
         </Border>

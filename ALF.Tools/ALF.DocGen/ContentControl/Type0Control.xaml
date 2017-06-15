@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="日期" Margin="5"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <DatePicker Grid.Column="1" Margin="5" VerticalAlignment="Center" Background="Transparent" x:Name="RQ" />
+            <DatePicker Grid.Column="1" Margin="5,5,10,5" VerticalAlignment="Center" Background="Transparent" x:Name="RQ" />
         </Grid>
         <!--<Grid Grid.Column="0"  Grid.Row="6"  >
             <Grid.ColumnDefinitions>
@@ -60,7 +60,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="正文内容" Margin="5"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <Button Grid.Column="1" Content="浏览" Margin="5" Click="ButtonDoc_Click"/>
+            <Button Grid.Column="1" Content="浏览" Margin="5,10,5,10" Click="ButtonDoc_Click"/>
         </Grid>
         <Grid Grid.Column="1"  Grid.Row="5"  >
             <Grid.ColumnDefinitions>

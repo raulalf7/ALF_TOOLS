@@ -1,6 +1,7 @@
 ﻿using ALF.DocGen.ContentControl;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ALF.DocGen
 {
@@ -16,6 +17,7 @@ namespace ALF.DocGen
 
         public static Action Gen;
         public static Action<string> SecondChange;
+        public static Grid coverGrid;
 
         private void typeCombo_SelectionChanged(object sender, EventArgs e)
         {
@@ -42,10 +44,12 @@ namespace ALF.DocGen
             secondCombo.Items = "部发文,部发函,厅发文,厅发函,司发文,司发函";
             secondCombo.SelectedIndex = 0;
             typeCombo.SelectedIndex = 0;
+            coverGrid = cover;
         }
 
         private void GenButton_Click(object sender, RoutedEventArgs e)
         {
+            cover.Visibility = Visibility.Visible;
             Gen?.Invoke();
         }
 
@@ -53,5 +57,6 @@ namespace ALF.DocGen
         {
             SecondChange?.Invoke(secondCombo.SelectedItem.ToString());
         }
+
     }
 }

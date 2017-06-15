@@ -1,11 +1,9 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
 
 namespace ALF.DocGen
@@ -15,31 +13,34 @@ namespace ALF.DocGen
         private static object _mis = Type.Missing;
         private static readonly object RpAll = WdReplace.wdReplaceAll;
         public static Microsoft.Office.Interop.Word.Application wordApp;
-        public static string folder = @".\Template";
-       // public static string folder = @"E:\文档\5_Code\ALF_TOOL\ALF.Tools\ALF.DocGen\bin\Debug\Template";
+        //public static string folder = @".";
+        public static string folder = @"C:\Users\raula\Documents\Code\ALF_TOOLS\ALF.Tools\ALF.DocGen\bin\Debug";
 
-        public static string Gen(Dictionary<string, string> valueList, int appType)
+        public static string Gen(Dictionary<string, string> valueList, int appType,bool isPreview)
         {
             var filePath = string.Format(@"{0}\tmp\{1}.docx", Environment.CurrentDirectory, DateTime.Now.ToString("yyyyMMddhhmmss"));
 
-            var tempPath = folder + @"\签报模板.docx";
+            var tempPath = folder + @"\Template\签报模板.docx";
             if (appType == 0)
             {
-                tempPath = folder + @"\发文稿纸模板.docx";
+                tempPath = folder + @"\Template\发文稿纸模板.docx";
             }
             if (appType == 2)
             {
-                tempPath = folder + @"\部发文模板.docx";
+                tempPath = folder + @"\Template\部发文模板.docx";
             }
             if (appType == 3)
             {
-                tempPath = folder + @"\厅发文模板.docx";
+                tempPath = folder + @"\Template\厅发文模板.docx";
             }
             if (appType == 4)
             {
-                tempPath = folder + @"\司发文模板.docx";
+                tempPath = folder + @"\Template\司发文模板.docx";
             }
-            
+            if (!isPreview)
+            {
+                tempPath = tempPath.Replace(".docx", "文字.docx");
+            }
 
             var fileInfo = new FileInfo(filePath);
 
@@ -258,5 +259,32 @@ namespace ALF.DocGen
             wordDoc.Save();
             wordDoc.Close(ref _mis, ref _mis, ref _mis);
         }
+
+        public static void ConvertWordToImage(string docPath, Dictionary<string,string> valueList, int genType)
+        {
+            var list = new List<string>();
+            try { CloseWordApp(); }
+            catch
+            { }
+
+            Spire.Doc.Document doc = new Spire.Doc.Document();
+            doc.LoadFromFile(docPath);
+
+            for (int i = 0; i < doc.PageCount; i++)
+            {
+                System.Drawing.Image image = doc.SaveToImages(i, Spire.Doc.Documents.ImageType.Metafile);
+                var name = string.Format("{1}-{0}.jpeg", i, SYSTEM.WindowsTools.GetBasicName(docPath).Split('.')[0]);
+                
+                image.Save(name, ImageFormat.Jpeg);
+                File.Copy(string.Format(@"{0}\{1}", Tools.folder, name), string.Format(@"{0}\tmp\{1}", Tools.folder, name));
+                list.Add(string.Format(@"{0}\tmp\{1}", Tools.folder, name));
+            }
+
+            var window = new PicWindow();
+            window.Load(list,valueList,genType);
+            window.ShowDialog();
+        }
+
+
     }
 }

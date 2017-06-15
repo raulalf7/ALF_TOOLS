@@ -36,18 +36,20 @@ namespace ALF.DocGen.ContentControl
             FJName = FJName.Substring(0, FJName.Length - 1);
 
             var valueList = new Dictionary<string, string>();
-            //valueList.Add("FWDZ", FWDZ.Value);
-            //valueList.Add("NF", NF.Value);
-            //valueList.Add("ZS", ZS.Value);
-            //valueList.Add("CS", CS.Value);
+
+            valueList.Add("WH", String.Format("{0}﹝{1}﹞", FWDZ.Value,NF.Value));
+
+            valueList.Add("FWDZ", FWDZ.Value);
+            valueList.Add("ZS", ZS.Value);
+            valueList.Add("CS", CS.Value);
             valueList.Add("ZBDW", ZBDW.Value);
-            //valueList.Add("MJ", MJ.SelectedItem.ToString()=="无"?"": "★" + MJ.SelectedItem.ToString());
+            valueList.Add("MJ", MJ.SelectedItem.ToString() == "无" ? "" : "★" + MJ.SelectedItem.ToString());
             valueList.Add("BT", BT.Value);
-            //valueList.Add("FJ", FJName);
-            //valueList.Add("HJ", HJ.SelectedItem.ToString());
-            //valueList.Add("CHUSHI", CHUSHI.SelectedItem.ToString());
-            //valueList.Add("RQ", ((DateTime)RQ.SelectedDate).ToString("yyyy年MM月dd日"));
-            
+            valueList.Add("FJ", FJName);
+            valueList.Add("HJ", HJ.SelectedItem.ToString());
+            valueList.Add("CHUSHI", CHUSHI.SelectedItem.ToString());
+            valueList.Add("RQ", ((DateTime)RQ.SelectedDate).ToString("yyyy年MM月dd日"));
+
 
             var fileInfo = new FileInfo(string.Format(@"{0}\{1}.docx",Environment.CurrentDirectory,DateTime.Now.ToString("yyyyMMddhhmmss")));
 
@@ -62,23 +64,25 @@ namespace ALF.DocGen.ContentControl
             }
 
 
-            var qbPath = Tools.Gen(valueList, 0);
-            //var zwPath = Tools.Gen(valueList, fwtype);
-            //Tools.CopyWordDoc(ZW.Text, zwPath, false);
-            //Tools.CopyWordDoc(zwPath, qbPath,true);
+            var qbPath = Tools.Gen(valueList, 0,true);
 
-            Tools.wordApp.Visible = true;
-            Tools.wordApp.Documents.Add(qbPath);
-
-            string logInfo = string.Format("\r\n\r\n\r\n制作时间：{0}\r\n", DateTime.Now.ToString("yyyyMMdd hh:mm:ss"));
-            foreach (var item in valueList)
+            if (fwtype == 4)
             {
-                logInfo += string.Format("【{0}】:{1}\r\n", item.Key, item.Value);
+                var zwPath = Tools.Gen(valueList, fwtype, true);
+                Tools.CopyWordDoc(ZW.Text, zwPath, false);
+                Tools.CopyWordDoc(zwPath, qbPath, true);
             }
 
-            var log = SYSTEM.WindowsTools.ReadFromTxt(Tools.folder+@"\Log.txt", System.Text.Encoding.UTF8);
-            SYSTEM.WindowsTools.WriteToTxt(Tools.folder + @"\Log.txt", log + logInfo, System.Text.Encoding.UTF8);
+            Tools.ConvertWordToImage(qbPath, valueList, 0);
 
+            //string logInfo = string.Format("\r\n\r\n\r\n制作时间：{0}\r\n", DateTime.Now.ToString("yyyyMMdd hh:mm:ss"));
+            //foreach (var item in valueList)
+            //{
+            //    logInfo += string.Format("【{0}】:{1}\r\n", item.Key, item.Value);
+            //}
+
+            //var log = SYSTEM.WindowsTools.ReadFromTxt(Tools.folder+@"\Log.txt", System.Text.Encoding.UTF8);
+            //SYSTEM.WindowsTools.WriteToTxt(Tools.folder + @"\Log.txt", log + logInfo, System.Text.Encoding.UTF8);
 
 
         }

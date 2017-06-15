@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 
 namespace ALF.DocGen
 {
@@ -9,6 +10,13 @@ namespace ALF.DocGen
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            try
+            {
+                Directory.Delete(Tools.folder + @"\tmp",true);
+                Directory.CreateDirectory(Tools.folder + @"\tmp");
+            }
+            catch
+            { }
             Tools.StartWordApp();
         }
 
