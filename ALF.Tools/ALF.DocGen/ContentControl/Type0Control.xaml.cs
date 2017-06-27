@@ -50,7 +50,6 @@ namespace ALF.DocGen.ContentControl
             valueList.Add("CHUSHI", CHUSHI.SelectedItem.ToString());
             valueList.Add("RQ", ((DateTime)RQ.SelectedDate).ToString("yyyy年MM月dd日"));
 
-
             var fileInfo = new FileInfo(string.Format(@"{0}\{1}.docx",Environment.CurrentDirectory,DateTime.Now.ToString("yyyyMMddhhmmss")));
 
             int fwtype = 4;
@@ -69,22 +68,11 @@ namespace ALF.DocGen.ContentControl
             if (fwtype == 4)
             {
                 var zwPath = Tools.Gen(valueList, fwtype, true);
-                Tools.CopyWordDoc(ZW.Text, zwPath, false);
-                Tools.CopyWordDoc(zwPath, qbPath, true);
+                OFFICE.WordTools.CopyWordContent(ZW.Text, zwPath, false,"ZW");
+                OFFICE.WordTools.CopyWordContent(zwPath, qbPath, true,"");
             }
 
             Tools.ConvertWordToImage(qbPath, valueList, 0);
-
-            //string logInfo = string.Format("\r\n\r\n\r\n制作时间：{0}\r\n", DateTime.Now.ToString("yyyyMMdd hh:mm:ss"));
-            //foreach (var item in valueList)
-            //{
-            //    logInfo += string.Format("【{0}】:{1}\r\n", item.Key, item.Value);
-            //}
-
-            //var log = SYSTEM.WindowsTools.ReadFromTxt(Tools.folder+@"\Log.txt", System.Text.Encoding.UTF8);
-            //SYSTEM.WindowsTools.WriteToTxt(Tools.folder + @"\Log.txt", log + logInfo, System.Text.Encoding.UTF8);
-
-
         }
 
         private void SecondChangeAction(string type)
@@ -135,40 +123,18 @@ namespace ALF.DocGen.ContentControl
             {
                 message += "日期格式不正确\n";
             }
-            //if (FJ.Text != "" && !File.Exists(FJ.Text))
-            //{
-            //    message += "附件文件不存在\n";
-            //}
             if (!File.Exists(ZW.Text))
             {
                 message += "正文文件不存在\n";
             }
             if (message != "")
             {
+                MainWindow.coverGrid.Visibility = Visibility.Collapsed;
                 MessageBox.Show(message);
             }
             return message == "";
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var dialog = new OpenFileDialog()
-        //    {
-        //        Filter = "WORD文件(*.docx)|*.docx|EXCEL文件(*.xlsx)|*.xlsx",
-        //        Multiselect = true,
-        //        AddExtension = true
-        //    };
-
-        //    if ((bool)dialog.ShowDialog())
-        //    {
-        //        foreach (var fileName in dialog.FileNames)
-        //        {
-        //            attachList.Add(fileName);
-        //            FJ.Text += string.Format("{0}.{1}\n", attachList.Count, ALF.SYSTEM.WindowsTools.GetBasicName(fileName));
-        //        }
-        //        FJ.Text = FJ.Text.Substring(0, FJ.Text.Length - 1);
-        //    }
-        //}
 
         private void ButtonDoc_Click(object sender, RoutedEventArgs e)
         {
@@ -227,7 +193,7 @@ namespace ALF.DocGen.ContentControl
                         FWDZ.Value = FWDZ.Value.Insert(FWDZ.Value.IndexOf("外") + 1, "欧");
                         break;
                     case "美大处":
-                        FWDZ.Value = FWDZ.Value.Insert(FWDZ.Value.IndexOf("外") + 1, "美大");
+                        FWDZ.Value = FWDZ.Value.Insert(FWDZ.Value.IndexOf("外") + 1, "美");
                         break;
                     case "欧亚处":
                         FWDZ.Value = FWDZ.Value.Insert(FWDZ.Value.IndexOf("外") + 1, "欧亚");

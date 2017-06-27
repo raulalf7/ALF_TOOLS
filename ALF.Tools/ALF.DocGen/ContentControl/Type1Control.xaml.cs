@@ -18,6 +18,7 @@ namespace ALF.DocGen.ContentControl
 
         public void GenType1Doc()
         {
+            Console.WriteLine("\n\n\n\n开始生成签报");
             var valueList = new Dictionary<string, string>();
             valueList.Add("CB", CB.Value);
             valueList.Add("SY", SY.Text);
@@ -30,17 +31,10 @@ namespace ALF.DocGen.ContentControl
             {
                 return;
             }
+            Console.WriteLine("开始创建预览");
             Tools.ConvertWordToImage(filePath,valueList, 1);
             MainWindow.coverGrid.Visibility = Visibility.Collapsed;
 
-            //string logInfo = string.Format("\r\n\r\n\r\n制作时间：{0}\r\n", DateTime.Now.ToLongTimeString());
-            //foreach (var item in valueList)
-            //{
-            //    logInfo += string.Format("【{0}】:{1}\r\n", item.Key, item.Value);
-            //}
-
-            //var log = SYSTEM.WindowsTools.ReadFromTxt(Tools.folder + @"\Log.txt", System.Text.Encoding.UTF8);
-            //SYSTEM.WindowsTools.WriteToTxt(Tools.folder + @"\Log.txt", log + logInfo, System.Text.Encoding.UTF8);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

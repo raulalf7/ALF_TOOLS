@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{283EB55D-7A04-4A3A-AB68-F12178B0A756}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ALF.DocGen</RootNamespace>
     <AssemblyName>ALF.DocGen</AssemblyName>
@@ -36,7 +36,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ALF.OFFICE">
+      <HintPath>..\..\..\ALF_DLL\ALF.OFFICE\bin\Debug\ALF.OFFICE.dll</HintPath>
+    </Reference>
     <Reference Include="ALF.SYSTEM, Version=1.0.2.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\ALF_DLL\ALF.SYSTEM\bin\Debug\ALF.SYSTEM.dll</HintPath>

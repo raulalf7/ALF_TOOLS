@@ -1,24 +1,18 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace ALF.DocGen
 {
     public class Tools
     {
-        private static object _mis = Type.Missing;
-        private static readonly object RpAll = WdReplace.wdReplaceAll;
-        public static Microsoft.Office.Interop.Word.Application wordApp;
-        //public static string folder = @".";
-        public static string folder = @"C:\Users\raula\Documents\Code\ALF_TOOLS\ALF.Tools\ALF.DocGen\bin\Debug";
+        public static string folder = Environment.CurrentDirectory;
 
         public static string Gen(Dictionary<string, string> valueList, int appType,bool isPreview)
         {
-            var filePath = string.Format(@"{0}\tmp\{1}.docx", Environment.CurrentDirectory, DateTime.Now.ToString("yyyyMMddhhmmss"));
+            var filePath = string.Format(@"{0}\tmpPng\{1}.docx", Environment.CurrentDirectory, DateTime.Now.ToString("yyyyMMddhhmmss"));
 
             var tempPath = folder + @"\Template\签报模板.docx";
             if (appType == 0)
@@ -56,10 +50,16 @@ namespace ALF.DocGen
             else
             {
                 MessageBox.Show("缺少模板！");
+                MainWindow.coverGrid.Visibility = Visibility.Collapsed;
                 return "";
             }
-
-            UpdateWord(valueList, filePath);
+            Console.WriteLine("拷贝模板");
+            OFFICE.WordTools.OpenDoc(filePath);
+            foreach (var valueItem in valueList)
+            {
+                OFFICE.WordTools.ReplaceContent(valueItem.Value, valueItem.Key, filePath,true);
+            }
+            OFFICE.WordTools.SaveAndClose(null, true);
 
             return filePath;
         }
@@ -77,214 +77,123 @@ namespace ALF.DocGen
             }
         }
 
-        public static void StartWordApp()
+        //public static void StartWordApp()
+        //{
+        //    Console.WriteLine("打开Word应用");
+        //    wordApp =
+        //        (Microsoft.Office.Interop.Word.Application)
+        //            Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
+        //}
+
+        //public static void CloseWordApp()
+        //{
+        //    try
+        //    {
+        //        wordApp.Quit(WdSaveOptions.wdSaveChanges, WdOriginalFormat.wdWordDocument, false);
+        //    }
+        //    catch
+        //    {
+        //    }
+        //}
+
+        //public static void CopyWordDoc(object sorceDocPath, object destDocPath,bool isPasteAtLast)
+        //{
+        //    object readOnly = false;
+        //    object isVisible = false;
+
+        //    Document destWordDoc = wordApp.Documents.Open(ref destDocPath, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis);
+        //    Document openWord = wordApp.Documents.Open(ref sorceDocPath, ref _mis, ref readOnly, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref isVisible, ref _mis, ref _mis, ref _mis, ref _mis);
+
+        //    openWord.Select();
+        //    openWord.Sections[1].Range.Copy();
+
+        //    if (isPasteAtLast)
+        //    {
+        //        destWordDoc.Select();
+        //        object objUnit = WdUnits.wdStory;
+        //        wordApp.Selection.EndKey(ref objUnit);
+        //        wordApp.ActiveWindow.Selection.PasteAndFormat(WdRecoveryType.wdPasteDefault);
+        //    }
+        //    else
+        //    {
+        //        foreach (Bookmark bm in destWordDoc.Bookmarks)
+        //        {
+        //            if (bm.Name == "ZW")
+        //            {
+        //                bm.Select();
+        //                bm.Range.PasteAndFormat(WdRecoveryType.wdPasteDefault);
+        //            }
+        //        }
+        //    }
+
+        //    openWord.Save();
+        //    openWord.Close(ref _mis, ref _mis, ref _mis);
+        //    destWordDoc.Save();
+        //    destWordDoc.Close(ref _mis, ref _mis, ref _mis);
+        //}
+
+        //private static string EditDocArg(string newValue, string oldValue, Document wordDoc)
+        //{
+        //    var result = "";
+        //    try
+        //    {
+        //        var wfnd = wordDoc.Range().Find;
+        //        wfnd.Text = oldValue;
+        //        wfnd.ClearFormatting();
+        //        if (wfnd.Execute(ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, newValue, RpAll, ref _mis, ref _mis, ref _mis, ref _mis))
+        //        {
+        //            Console.WriteLine("Find");
+        //            return "";
+        //        }
+
+        //        StoryRanges sr = wordDoc.StoryRanges;
+        //        foreach (Range r in sr)
+        //        {
+        //            Range r1 = r;
+        //            if (WdStoryType.wdTextFrameStory == r.StoryType) //这句话用来判断什么的？
+        //            {
+        //                do
+        //                {
+        //                    r1.Find.ClearFormatting();
+        //                    r1.Find.Text = oldValue;
+
+        //                    r1.Find.Replacement.ClearFormatting();
+        //                    r1.Find.Replacement.Text = newValue;
+
+        //                    if (r1.Find.Execute(
+        //                                    ref _mis, ref _mis, ref _mis, ref _mis, ref _mis,
+        //                                    ref _mis, ref _mis, ref _mis, ref _mis, ref _mis,
+        //                                    RpAll, ref _mis, ref _mis, ref _mis, ref _mis))
+        //                    {
+        //                        break;//找到并替换后跳出循环，省点时间
+        //                    }
+        //                    else
+        //                    {
+        //                        r1 = r1.NextStoryRange;
+        //                    }  //加上这个if语句可以提高一点效率，但还是比较慢
+        //                } while (r1 != null);
+        //            }
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = ex.Message;
+        //        Console.WriteLine("Error:" + ex.Message);
+        //    }
+
+        //    return result;
+        //}
+
+
+        public static void ConvertWordToImage(string docPath, Dictionary<string, string> valueList, int genType)
         {
-            wordApp =
-                (Microsoft.Office.Interop.Word.Application)
-                    Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
-        }
-
-        public static void CloseWordApp()
-        {
-            try
-            {
-                wordApp.Quit(WdSaveOptions.wdSaveChanges, WdOriginalFormat.wdWordDocument, false);
-            }
-            catch
-            {
-            }
-        }
-
-        public static void CopyWordDoc(object sorceDocPath, object destDocPath,bool isPasteAtLast)
-        {
-            object readOnly = false;
-            object isVisible = false;
-
-            Document destWordDoc = wordApp.Documents.Open(ref destDocPath, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis);
-            Document openWord = wordApp.Documents.Open(ref sorceDocPath, ref _mis, ref readOnly, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref isVisible, ref _mis, ref _mis, ref _mis, ref _mis);
-
-            openWord.Select();
-            openWord.Sections[1].Range.Copy();
-
-            if (isPasteAtLast)
-            {
-                destWordDoc.Select();
-                object objUnit = WdUnits.wdStory;
-                wordApp.Selection.EndKey(ref objUnit);
-                wordApp.ActiveWindow.Selection.PasteAndFormat(WdRecoveryType.wdPasteDefault);
-            }
-            else
-            {
-                foreach (Bookmark bm in destWordDoc.Bookmarks)
-                {
-                    if (bm.Name == "ZW")
-                    {
-                        bm.Select();
-                        bm.Range.PasteAndFormat(WdRecoveryType.wdPasteDefault);
-                    }
-                }
-            }
-
-            openWord.Save();
-            openWord.Close(ref _mis, ref _mis, ref _mis);
-            destWordDoc.Save();
-            destWordDoc.Close(ref _mis, ref _mis, ref _mis);
-        }
-        
-        private static void ReleaseObject(object obj)
-        {
-            try
-            {
-                Marshal.ReleaseComObject(obj);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
-
-        private static string EditDocArg(string newValue, string oldValue, Document wordDoc)
-        {
-            var result = "";
-            try
-            {
-                var wfnd = wordDoc.Range().Find;
-                wfnd.Text = oldValue;
-                wfnd.ClearFormatting();
-                if (wfnd.Execute(ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, newValue, RpAll, ref _mis, ref _mis, ref _mis, ref _mis))
-                {
-                    Console.WriteLine("Find");
-                    return "";
-                }
-
-                StoryRanges sr = wordDoc.StoryRanges;
-                foreach (Range r in sr)
-                {
-                    Range r1 = r;
-                    if (WdStoryType.wdTextFrameStory == r.StoryType) //这句话用来判断什么的？
-                    {
-                        do
-                        {
-                            r1.Find.ClearFormatting();
-                            r1.Find.Text = oldValue;
-
-                            r1.Find.Replacement.ClearFormatting();
-                            r1.Find.Replacement.Text = newValue;
-
-                            if (r1.Find.Execute(
-                                            ref _mis, ref _mis, ref _mis, ref _mis, ref _mis,
-                                            ref _mis, ref _mis, ref _mis, ref _mis, ref _mis,
-                                            RpAll, ref _mis, ref _mis, ref _mis, ref _mis))
-                            {
-                                break;//找到并替换后跳出循环，省点时间
-                            }
-                            else
-                            {
-                                r1 = r1.NextStoryRange;
-                            }  //加上这个if语句可以提高一点效率，但还是比较慢
-                        } while (r1 != null);
-                    }
-                }
-
-            //    foreach (Range range in storyRanges)
-            //    {
-            //        Range rangeFlag = range;
-            //        rangeFlag.Find.ClearFormatting();
-            //        rangeFlag.Find.Replacement.ClearFormatting();
-            //        rangeFlag.Find.Text = oldValue;
-            //        rangeFlag.Find.Replacement.Text = newValue;
-            //        if (rangeFlag.Find.Execute(ref _mis, ref _mis, ref _mis,
-            //                               ref _mis, ref _mis, ref _mis,
-            //                               ref _mis, ref _mis, ref _mis,
-            //                               ref _mis, RpAll, ref _mis,
-            //                               ref _mis, ref _mis, ref _mis))
-            //        {
-            //            Console.WriteLine("Find");
-            //            return "";
-            //        }
-            //        //if (WdStoryType.wdTextFrameStory == rangeFlag.StoryType)
-            //        //{
-            //        //    while (rangeFlag != null)
-            //        //    {
-            //        //        rangeFlag.Find.ClearFormatting();
-            //        //        rangeFlag.Find.Replacement.ClearFormatting();
-            //        //        rangeFlag.Find.Text = oldValue;
-            //        //        rangeFlag.Find.Replacement.Text = newValue;
-            //        //        rangeFlag.Find.Execute(ref _mis, ref _mis, ref _mis,
-            //        //                               ref _mis, ref _mis, ref _mis,
-            //        //                               ref _mis, ref _mis, ref _mis,
-            //        //                               ref _mis, RpAll, ref _mis,
-            //        //                               ref _mis, ref _mis, ref _mis);
-            //        //        rangeFlag = range.NextStoryRange;
-            //        //    }
-            //        //}
-
-            //    }
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-                Console.WriteLine("Error:" + ex.Message);
-            }
-
-            return result;
-        }
-
-        private static void UpdateWord(Dictionary<string,string> valueList, object filePath, bool isQuitWhenError = true)
-        {
-            Document wordDoc =new Document();
-            try
-            {
-                wordDoc = wordApp.Documents.Open(ref filePath, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis);
-            }
-            catch
-            {
-                StartWordApp();
-                wordDoc = wordApp.Documents.Open(ref filePath, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis, ref _mis);
-            }
-            wordDoc.SpellingChecked = true;
-            wordDoc.GrammarChecked = true;
-            wordDoc.ShowSpellingErrors = false;
-            var i = 1;
-            foreach (var valueItem in valueList)
-            {
-                EditDocArg(valueItem.Value, valueItem.Key, wordDoc);
-                i++;
-            }
-
-            wordDoc.Save();
-            wordDoc.Close(ref _mis, ref _mis, ref _mis);
-        }
-
-        public static void ConvertWordToImage(string docPath, Dictionary<string,string> valueList, int genType)
-        {
-            var list = new List<string>();
-            try { CloseWordApp(); }
-            catch
-            { }
-
-            Spire.Doc.Document doc = new Spire.Doc.Document();
-            doc.LoadFromFile(docPath);
-
-            for (int i = 0; i < doc.PageCount; i++)
-            {
-                System.Drawing.Image image = doc.SaveToImages(i, Spire.Doc.Documents.ImageType.Metafile);
-                var name = string.Format("{1}-{0}.jpeg", i, SYSTEM.WindowsTools.GetBasicName(docPath).Split('.')[0]);
-                
-                image.Save(name, ImageFormat.Jpeg);
-                File.Copy(string.Format(@"{0}\{1}", Tools.folder, name), string.Format(@"{0}\tmp\{1}", Tools.folder, name));
-                list.Add(string.Format(@"{0}\tmp\{1}", Tools.folder, name));
-            }
-
+            var list = OFFICE.WordTools.ConvertWordToImage(docPath);
+            Console.WriteLine("预览图片生成完成");
             var window = new PicWindow();
-            window.Load(list,valueList,genType);
+            window.Load(list, valueList, genType);
             window.ShowDialog();
         }
-
 
     }
 }

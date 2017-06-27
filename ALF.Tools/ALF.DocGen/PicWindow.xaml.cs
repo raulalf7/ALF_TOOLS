@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -72,17 +71,18 @@ namespace ALF.DocGen
             }
         }
 
+        private static object _mis = Type.Missing;
+
         private void Button_Print_Click(object sender, RoutedEventArgs e)
         {
             var filePath = Tools.Gen(_valueList, genType, false);
-            Tools.wordApp.Visible = true;
-            Tools.wordApp.Documents.Add(filePath);
+            OFFICE.WordTools.PrintWord(filePath);
+            Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
             MainWindow.coverGrid.Visibility = Visibility.Collapsed;
-            Tools.wordApp.Visible = false;
         }
     }
 

@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
         Closed="Window_Closed"
-        Width="400"
-        Height="600"
-        Title="PicWindow">
+        Width="520"
+        Height="780"
+        Title="预览窗口">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

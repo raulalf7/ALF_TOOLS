@@ -17,12 +17,16 @@ namespace ALF.DocGen
             }
             catch
             { }
-            Tools.StartWordApp();
+            if (OFFICE.WordTools.StartWordApp() != "") 
+            {
+                MessageBox.Show("请先关闭所有打开的Word文档再重新运行此工具。若仍出现此提示框请重新安装Word。");
+                Shutdown();
+            }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            Tools.CloseWordApp();
+            OFFICE.WordTools.CloseWordApp();
         }
     }
 }

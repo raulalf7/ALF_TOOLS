@@ -28,8 +28,8 @@
         </Grid>
         <Border Grid.Row="1" BorderThickness="0,1,0,1" BorderBrush="Black">
             <WrapPanel>
-                <titleControl:Combo Grid.Row="1"  Title="文档类型" HorizontalAlignment="Left" x:Name="typeCombo"  ValueWidth="290" SelectionChanged="typeCombo_SelectionChanged" />
-                <titleControl:Combo Grid.Row="1"  Title="发文类型" HorizontalAlignment="Left" x:Name="secondCombo"  ValueWidth="290" SelectionChanged="secondCombo_SelectionChanged" Visibility="Collapsed"/>
+                <titleControl:Combo Grid.Row="1"  Title="文档类型" HorizontalAlignment="Left" x:Name="typeCombo"  ValueWidth="290" Margin="0,0,8,0" SelectionChanged="typeCombo_SelectionChanged" />
+                <titleControl:Combo Grid.Row="1"  Title="发文类型" HorizontalAlignment="Left" x:Name="secondCombo"  ValueWidth="290"  SelectionChanged="secondCombo_SelectionChanged" Visibility="Collapsed"/>
             </WrapPanel>
         </Border>
         <TextBlock  Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="国际司公文生成工具" FontSize="40" FontWeight="Bold"/>
